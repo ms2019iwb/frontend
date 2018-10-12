@@ -6,13 +6,7 @@ import '../../App.css';
 class Tab extends Component {
   render() {
     return (
-      <Tabutton
-        color={this.props.color}
-        activeColor={this.props.activeColor}
-        borderPx={this.props.borderPx}
-        activeBorderPx={this.props.activeBorderPx}
-        to={this.props.to}
-      >
+      <Tabutton color={this.props.color} activeColor={this.props.activeColor} to={this.props.to}>
         {this.props.text}
       </Tabutton>
     );
@@ -22,26 +16,24 @@ class Tab extends Component {
 Tab.defaultProps = {
   color: '#707070',
   activeColor: '#e95252',
-  borderPx: '1px',
-  activeBorderPx: '3px',
   to: '/',
-  text: 'ボタン'
+  text: ''
 };
 
 export default Tab;
 
 const Tabutton = styled(NavLink)`
   display: block;
-  width: 430px;
-  line-height: 72px;
+  border-bottom: solid 1px ${props => props.color};
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
   text-align: center;
-  border-bottom: ${props => props.borderPx} solid ${props => props.color};
-  font-size: 35px;
+  font-size: 2.4rem;
   color: ${props => props.color};
-  font-family: Segoe UI !important;
 
   &.active {
+    border-bottom: solid 3px ${props => props.activeColor};
     color: ${props => props.activeColor};
-    border-bottom: ${props => props.activeBorderPx} solid ${props => props.activeColor};
   }
 `
