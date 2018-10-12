@@ -29,15 +29,14 @@ class Login extends Component {
       <Root>
         <Top />
         <Form>
-          <Logo>
-            ロゴマーク
-          </Logo>
           <TabList />
           <Inputwrap>
             <Form action="" >
               <Id>
-                <FontAwesomeIcon icon={faEnvelope} />
-                <Idinput type="input" name="mail" placeholder="ID" value={this.state.data.mail} onChange={this.handleChange}></Idinput>
+                <Label for="mail">
+                  <FontAwesomeIcon icon={faEnvelope} />
+                </Label>
+                <Idinput type="input" id="mail" name="mail" placeholder="ID" value={this.state.data.mail} onChange={this.handleChange}></Idinput>
               </Id>
               <Pass>
                 <Passinput type="password" name="pass" placeholder="PASSWORD" value={this.state.data.pass} onChange={this.handleChange}></Passinput>
@@ -60,28 +59,34 @@ const Root = styled.div`
   width: 100%;
   height: 100vh;
 `
-
-const Logo = styled.h1`
-  
-`
-
 const Inputwrap = styled.div`
-  
+  margin-top: 295px;
 `
 const Form = styled.form`
-  
+  margin: 0 auto;
 `
 const Id = styled.div`
-  
+`
+const Label = styled.label`
+  display: inline-block;
+  width: 119px;
+  height: 115px;
+  & > svg {
+    color: red;
+  }
 `
 const Pass = styled.div`
-  
+  margin-top: 116px;
 `
 const Log = styled.div`
   
 `
 const Idinput = styled.input`
-  
+  width: 625px;
+  height: 115px;
+  border: none;
+  background-color: #ffadad;
+  border-radius: 0 25px 25px 0;
 `
 const Passinput = styled.input`
   
