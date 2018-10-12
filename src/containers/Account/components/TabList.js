@@ -5,17 +5,25 @@ import Tab from '../../../components/Button/Tab';
 class TabList extends Component {
   render() {
     return (
-      <Root>
-        <Tab color='#707070' activeColor='#e95252' borderPx='1px' activeBorderPx='3px' to='/login' text='ログイン' />
-        <Tab color='#707070' activeColor='#e95252' borderPx='1px' activeBorderPx='3px' to='/signup' text='新規登録' />
-      </Root>
+      <List>
+        <Item>
+          <Tab color='#707070' activeColor='#e95252' to='/login' text='ログイン' />
+        </Item>
+        <Item>
+          <Tab color='#707070' activeColor='#e95252' to='/signup' text='新規登録' />
+        </Item>
+      </List>
     );
   }
 }
 
 export default TabList;
 
-const Root = styled.div`
+const List = styled.ul`
   display: flex;
   width: 100%;
+`
+
+const Item = styled.li`
+  width: 50%;
 `
