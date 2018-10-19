@@ -5,10 +5,7 @@ class Top extends Component {
   render() {
     return (
       <Root>
-        <Logo>
-          FREGO<br />
-          LOGO
-        </Logo>
+        <Img src="../images/logo.png" alt="logo" />
         <Concept>
           テキストテキストテキストテキスト<br />
           テキストテキストテキストテキスト<br />
@@ -31,16 +28,14 @@ const Root = styled.div`
   background-color: #f58989;
 `
 
-const Logo = styled.p`
-  width: 389px;
-  height: 84px;
+const Img = styled.img`
+  width: 392px;
   margin-bottom: 215px;
-  color: #ff8080;
-  background-color: #fff;
 `
 
 const Concept = styled.p`
   color: #fff;
   text-align: center;
   line-height: 56px;
+  font-size: 2.4rem;
 `
