@@ -29,3 +29,12 @@ a {
 input[type="submit"], [type="button"] {
     -webkit-appearance: none;
 }
+
+input:-webkit-autofill {
+    /* box-shadow: 0 0 0px 1000px #ffadad inset; */
+    color: rgb(255, 255, 255) !important;
+}
+
+input:focus {
+    outline: 0;
+}
