@@ -2,17 +2,20 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import Top from './components/Top';
 import TabList from './components/TabList';
+import { faEnvelope, faKey, faUser } from '@fortawesome/free-solid-svg-icons';
+import InputWithIcon from '../../components/Form/InputWithIcon';
+import Button from '../../components/Button/Button';
 
 class Signup extends Component {
   state = {
     data: {
-      id: '',
+      mail: '',
       pass: '',
       name: ''
     }
   };
 
-  txtChange = event =>{
+  txtChange = event => {
     const data = {...this.state.data};
     data[event.target.name] = event.target.value;
     this.setState({
@@ -20,30 +23,46 @@ class Signup extends Component {
     });
     console.log(data);
   };
+
   render() {
     return (
       <Root>
         <Top />
         <Form>
-          <Logo>
-            insert<br/>LOGO
-          </Logo>
-          <TabList />
-          <Title>
-            新規登録画面
-          </Title>
-          <Box>
-            frgoのIDを入力<Input type="text" placeholder="例)frgo555" value={this.state.data.id} onChange={this.txtChange} name="id" ></Input>
-          </Box>
-          <Box>
-            パスワードを入力<Input type="password" placeholder="例)frgo9999" value={this.state.data.pass} onChange={this.txtChange} name="pass" ></Input>
-          </Box>
-          <Box>
-          公開名を入力<Input type="text" placeholder="例)火気厳禁" value={this.state.data.name} onChange={this.txtChange} name="name" ></Input>
-          </Box>
-          <Box>
-          <A>登録</A>
-          </Box>
+          <Nav>
+            <TabList />
+          </Nav>
+          <InputWithIcon
+            mbSize="75px"
+            icon={faEnvelope}
+            id="mail"
+            type="mail"
+            name="mail"
+            value={this.state.data.mail}
+            placeholder="メールアドレス"
+            onChange={this.txtChange}
+          />
+          <InputWithIcon
+            mbSize="75px"
+            icon={faKey}
+            id="pass"
+            type="password"
+            name="pass"
+            value={this.state.data.pass}
+            placeholder="パスワード"
+            onChange={this.txtChange}
+          />
+          <InputWithIcon
+            mbSize="125px"
+            icon={faUser}
+            id="name"
+            type="text"
+            name="name"
+            value={this.state.data.name}
+            placeholder="ニックネーム"
+            onChange={this.txtChange}
+          />
+          <Button text="登録" />
         </Form>
       </Root>
     );
@@ -53,62 +72,24 @@ class Signup extends Component {
 export default Signup;
 
 const Root = styled.div`
-  display: flex;
-  margin: 0;
-  width:100%;
-  height: 100vh;
-  text-align:center;
-  color: #b9b9b9;
+    display: flex;
+    margin: 0;
+    width:100%;
+    height: 100vh;
+    text-align: center;
+    color: #b9b9b9;
 `
 
 const Form = styled.form`
+  display: flex;
+  flex-direction: column;
   width:50%;
+  justify-content: center;
+  align-items: center;
 `
 
-const Logo = styled.h1`
-  font-family:Verdana, Geneva, Tahoma, sans-serif;
-  color: #00ffb3;
-  height: 100px;
+const Nav = styled.nav`
+  width: 60rem;
+  font-size:2.4rem;
+  margin-bottom:100px;
 `
-
-const Title = styled.p`
-  font-family:Verdana, Geneva, Tahoma, sans-serif;
-  color: #5b5b5b;
-  height: 100px;
-  margin:5% 0;
-`
-
-const Box = styled.p`
-  font-family:Verdana, Geneva, Tahoma, sans-serif;
-  color: #5b5b5b;
-  width: 100%;
-`
-
-const A = styled.p`
-  font-family:Verdana, Geneva, Tahoma, sans-serif;
-  text-align:center;
-  width:25%;
-  margin: 10% auto;
-  color: #ffffff;
-  background-color:#89f3cc;
-  text-decoration: none;
-`
-
-const Input = styled.input.attrs({
-  // we can define static props
-  type: "password",
-  // or we can define dynamic ones
-  margin: props => props.size || "1em",
-  padding: props => props.size || "1em"
-})`
-  color: #89f3cc;
-  width:70%;
-  font-size: 70%;
-  border: 2px solid #89f3cc;
-  border-radius: 3px;
-  
-
-  /* here we use the dynamically computed props */
-  margin: ${props => props.margin};
-  padding: ${props => props.padding};
-`;

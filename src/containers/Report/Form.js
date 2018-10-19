@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import Input from '../../components/Form/Input';
+import Input from '../../components/Form/InputWithIcon';
 
 class Form extends Component {
   render() {

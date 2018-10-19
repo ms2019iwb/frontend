@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import Top from './components/Top';
 import TabList from './components/TabList';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
+import { faEnvelope, faKey } from '@fortawesome/free-solid-svg-icons';
+import InputWithIcon from '../../components/Form/InputWithIcon';
+import Button from '../../components/Button/Button';
 
 class Login extends Component {
   state = {
@@ -29,23 +30,30 @@ class Login extends Component {
       <Root>
         <Top />
         <Form>
-          <TabList />
-          <Inputwrap>
-            <Form action="" >
-              <Id>
-                <Label for="mail">
-                  <FontAwesomeIcon icon={faEnvelope} />
-                </Label>
-                <Idinput type="input" id="mail" name="mail" placeholder="ID" value={this.state.data.mail} onChange={this.handleChange}></Idinput>
-              </Id>
-              <Pass>
-                <Passinput type="password" name="pass" placeholder="PASSWORD" value={this.state.data.pass} onChange={this.handleChange}></Passinput>
-              </Pass>
-              <Log>
-                <Logbutton type="submit" value="ログイン"></Logbutton>
-              </Log>
-            </Form>
-          </Inputwrap>
+          <Nav>
+            <TabList />
+          </Nav>
+          <InputWithIcon
+            mbSize="75px"
+            icon={faEnvelope}
+            id="mail"
+            type="mail"
+            name="mail"
+            value={this.state.data.mail}
+            placeholder="メールアドレス"
+            onChange={this.handleChange}
+          />
+          <InputWithIcon
+            mbSize="186px"
+            icon={faKey}
+            id="pass"
+            type="password"
+            name="pass"
+            value={this.state.data.pass}
+            placeholder="パスワード"
+            onChange={this.handleChange}
+          />
+          <Button text="ログイン" />
         </Form>
       </Root>
     );
@@ -59,38 +67,15 @@ const Root = styled.div`
   width: 100%;
   height: 100vh;
 `
-const Inputwrap = styled.div`
-  margin-top: 295px;
-`
 const Form = styled.form`
-  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
 `
-const Id = styled.div`
-`
-const Label = styled.label`
-  display: inline-block;
-  width: 119px;
-  height: 115px;
-  & > svg {
-    color: red;
-  }
-`
-const Pass = styled.div`
-  margin-top: 116px;
-`
-const Log = styled.div`
-  
-`
-const Idinput = styled.input`
-  width: 625px;
-  height: 115px;
-  border: none;
-  background-color: #ffadad;
-  border-radius: 0 25px 25px 0;
-`
-const Passinput = styled.input`
-  
-`
-const Logbutton = styled.input`
-  
+
+const Nav = styled.div`
+  margin-bottom: 160px;
+  width: 600px;
 `

@@ -1,17 +1,14 @@
-import React, { Component } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
-import '../../App.css';
 
-class Tab extends Component {
-  render() {
-    return (
-      <Tabutton color={this.props.color} activeColor={this.props.activeColor} to={this.props.to}>
-        {this.props.text}
-      </Tabutton>
-    );
-  }
-}
+const Tab = (props) => {
+  return (
+    <Tabutton color={props.color} activeColor={props.activeColor} to={props.to}>
+      {props.text}
+    </Tabutton>
+  );
+};
 
 Tab.defaultProps = {
   color: '#707070',
