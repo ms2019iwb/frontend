@@ -30,10 +30,10 @@ class Form extends Component {
             <Textarea placeholder="詳細な情報を教えてください"></Textarea>
           </Reporttext>
           <Reportfile>
-            <Fileap>
+            <Fileup>
               アップロードする
               <File type='file'></File>
-            </Fileap>
+            </Fileup>
           </Reportfile>
           <Reportfileimg>
             <Img>画像</Img>
@@ -52,9 +52,14 @@ export default Form;
 
 const Report = styled.div`
   width: 100%;
+  height: 100%;
   background-color: #F58989;
   text-align: center;
   color: #FFFFFF;
+  @media screen and (max-width: 800px) {
+    background-color: #FFFFFF;
+    color: #254FAE;
+  }
 `
 
 const Header = styled.header`
@@ -69,15 +74,25 @@ const Header = styled.header`
   background-color: #FFFFFF;
   color: #060606;
   font-size: 3rem;
+  @media screen and (max-width: 800px) {
+    height: 60px;
+    margin-bottom: 31px;
+  }
 `
 
 const Mark = styled.div`
   margin-bottom: 20px;
+  @media screen and (max-width: 800px) {
+    margin-bottom: 8px;
+  }
 `
 
 const Houkoku = styled.p`
   margin-bottom: 30px;
   font-size: 2rem;
+  @media screen and (max-width: 800px) {
+    margin-bottom: 29px;
+  }
 `
 
 const Reportform = styled.form`
@@ -87,11 +102,21 @@ const Reportform = styled.form`
   width: 800px;
   height: 700px;
   margin: 0 auto;
+  margin-bottom: 77px;
   padding-top: 36px;
   border: 1px solid #707070;
   border-radius: 40px;
   background-color: #FFFFFF;
   color: #254FAE;
+  @media screen and (max-width: 800px) {
+    height: auto;
+    margin-bottom: 0px;
+    padding-top: 0px;
+    padding-bottom: 39px;
+    border: none;
+    border-radius: none;
+    
+  }
 `
 
 const Check = styled.p`
@@ -145,7 +170,7 @@ const Reportfile = styled.div`
   margin-bottom: 15px;
 `
 
-const Fileap = styled.label`
+const Fileup = styled.label`
   display: flex;
   align-items: center;
   justify-content: center;
