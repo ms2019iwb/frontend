@@ -26,11 +26,19 @@ const Root = styled.div`
   width: 50%;
   height: 100vh;
   background-color: #f58989;
+
+  @media screen and (max-width: 1100px) {
+    width: 100%;
+  }
 `
 
 const Img = styled.img`
   width: 392px;
   margin-bottom: 215px;
+
+  @media screen and (max-width: 1100px) {
+    display: none;
+  }
 `
 
 const Concept = styled.p`
