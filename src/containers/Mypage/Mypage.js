@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 
+
 class Mypage extends Component {
   render() {
     return (
       <Root>
-        マイページ
+          マイページ
       </Root>
     );
   }
@@ -13,6 +14,6 @@ class Mypage extends Component {
 
 export default Mypage;
 
-const Root = styled.h1`
+const Root = styled.div`
   color: #333;
 `
