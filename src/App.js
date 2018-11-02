@@ -8,6 +8,8 @@ import Signup from './containers/Account/Signup';
 import Mypage from './containers/Mypage/Mypage';
 import ReportForm from './containers/Report/Form';
 import ReportDetails from './containers/Report/Details';
+import Edit from './containers/Mypage/Edit';
+import Report from './containers/Report/Report';
 import './App.css';
 
 const App = () => (
@@ -17,6 +19,8 @@ const App = () => (
       <Route exact path="/login" component={Login}/>
       <Route exact path="/signup" component={Signup}/>
       <Route exact path="/mypage" component={Mypage}/>
+      <Route exact path="/account" component={Edit}/>
+      <Route exact path="/report" component={Report}/>
       <Route exact path="/report/form" component={ReportForm} />
       <Route exact path="/report/details" component={ReportDetails} />
     </React.Fragment>
