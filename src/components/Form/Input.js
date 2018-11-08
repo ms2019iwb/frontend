@@ -47,6 +47,7 @@ const Label = styled.label`
   height: 35px;
   border: 1px solid #254FAE;
   border-radius: ${props => props.borderradius};
+  box-shadow: 0px 3px 2px rgba(0,0,0,0.16);
   color: #254FAE;
   font-size: 1.4rem;
   }
