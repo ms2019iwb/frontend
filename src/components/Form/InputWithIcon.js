@@ -36,6 +36,10 @@ const Root = styled.div`
   display: flex;
   margin-bottom: ${props => props.mbSize};
   height: 45px;
+
+  @media screen and (max-width: 1100px){
+    height: 40px;
+  }
 `
 
 const Label = styled.label`
@@ -54,6 +58,11 @@ const Label = styled.label`
   & > svg {
     font-size: 2rem;
   }
+
+  @media screen and (max-width: 1100px){
+    border-radius: 10px 0 0 10px;
+    width: 42px;
+  }
 `
 
 const Input = styled.input`
@@ -70,4 +79,10 @@ const Input = styled.input`
   &::-webkit-input-placeholder{
     color: #fff;
   }
-`;
+
+  @media screen and (max-width: 1100px){
+    border-radius: 0px 10px 10px 0px;
+    width: 220px;
+    font-size: 1.4rem;
+  }
+`

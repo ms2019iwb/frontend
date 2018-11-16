@@ -49,5 +49,4 @@ const Root = styled.div`
   background-color: ${props => props.backgroundcolor};
   color: ${props => props.color};
   font-size: ${props => props.fontsize};
-  }
 `

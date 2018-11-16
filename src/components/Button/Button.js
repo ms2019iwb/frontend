@@ -34,7 +34,7 @@ const Root = styled(Link)`
   border-radius: 10px;
   width: ${props => props.widthSize};
   height: ${props => props.heightSize};
-  line-height: ${props => props.heightSize}
+  line-height: ${props => props.heightSize};
   text-align: center;
   color: #fff;
   font-size: 2rem;
