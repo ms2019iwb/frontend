@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const InputWithIcon = (props) => {
   return(
-    <Root mbSize={props.mbSize}>
+    <Root>
       <Label htmlFor={props.id}>
         <FontAwesomeIcon icon={props.icon} />
       </Label>
@@ -34,12 +34,7 @@ InputWithIcon.defaultProps = {
 
 const Root = styled.div`
   display: flex;
-  margin-bottom: ${props => props.mbSize};
-  height: 45px;
-
-  @media screen and (max-width: 1100px){
-    height: 40px;
-  }
+  height: 100%;
 `
 
 const Label = styled.label`
