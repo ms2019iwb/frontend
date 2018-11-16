@@ -121,11 +121,16 @@ const Nav = styled.nav`
 
   @media screen and (max-width: 1100px) {
     width: 284px;
+    margin-bottom: 101px;
   }
 `
 
 const InputList = styled.ul`
   margin-bottom: 125px;
+
+  @media screen and (max-width: 1100px) {
+    margin-bottom: 70px;
+  }
 `
 
 const InputItem = styled.li`
@@ -134,10 +139,16 @@ const InputItem = styled.li`
   &:not(:last-child) {
     margin-bottom: 75px;
   }
+
+  @media screen and (max-width: 1100px) {
+    &:not(:last-child) {
+      margin-bottom: 51px;
+    }
+  }
 `
 
 const Action = styled.div`
   @media screen and (max-width: 1100px) {
-    margin-bottom: 36px;
+    margin-bottom: 37px;
   }
 `

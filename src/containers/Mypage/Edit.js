@@ -44,7 +44,6 @@ class Edit extends Component {
             <Accountedittext>
               <Accounteditname>
                 <InputWithIcon
-                  mbSize="0px"
                   icon={faUser}
                   id="name"
                   type="text"
@@ -56,7 +55,6 @@ class Edit extends Component {
               </Accounteditname>
               <Accounteditpass>
                 <InputWithIcon
-                  mbSize="0px"
                   icon={faKey}
                   id="pass"
                   type="password"

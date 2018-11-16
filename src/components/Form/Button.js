@@ -47,6 +47,7 @@ const Root = styled.div`
   border-radius: ${props => props.borderradius};
   box-shadow: ${props => props.boxshadow};
   background-color: ${props => props.backgroundcolor};
+  line-height: ${props => props.height};
   color: ${props => props.color};
   font-size: ${props => props.fontsize};
 `
