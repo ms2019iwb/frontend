@@ -1,10 +1,29 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import InputWithIcon from '../../components/Form/InputWithIcon';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUser, faAddressCard } from '@fortawesome/free-solid-svg-icons';
+import { faKey, faUser } from '@fortawesome/free-solid-svg-icons';
+import Button from '../../components/Button/Mypageedit_button';
 
 
-class Mypage extends Component {
+class Edit extends Component {
+
+  state = {
+    data: {
+      name: '',
+      pass: ''
+    }
+  };
+
+  txtChange = event => {
+    const data = {...this.state.data};
+    data[event.target.name] = event.target.value;
+    this.setState({
+      data:data
+    });
+    console.log(data);
+  };
+
   render() {
     return (
       <Root>
@@ -18,23 +37,47 @@ class Mypage extends Component {
           </Backtop>
         </Left>
         <Right>
-          <Itemwrap>
-            <Item>
-              <Itemimg>
-                <FontAwesomeIcon icon={faAddressCard} />
-              </Itemimg>
-              <Itemtxt>
-                アカウント情報変更
-              </Itemtxt>
-            </Item>
-          </Itemwrap>
+          <Accounteditwrap>
+            <Accountedittitle>
+              アカウント情報変更
+            </Accountedittitle>
+            <Accountedittext>
+              <Accounteditname>
+                <InputWithIcon
+                  mbSize="0px"
+                  icon={faUser}
+                  id="name"
+                  type="text"
+                  name="name"
+                  value={this.state.data.name}
+                  placeholder="ニックネーム"
+                  onChange={this.txtChange}
+                />
+              </Accounteditname>
+              <Accounteditpass>
+                <InputWithIcon
+                  mbSize="0px"
+                  icon={faKey}
+                  id="pass"
+                  type="password"
+                  name="pass"
+                  value={this.state.data.pass}
+                  placeholder="パスワード"
+                  onChange={this.txtChange}
+                />
+              </Accounteditpass>
+            </Accountedittext>
+            <Accounteditsubmit>
+              <Button text="更新" />
+            </Accounteditsubmit>
+          </Accounteditwrap>
         </Right>
       </Root>
     );
   }
 }
 
-export default Mypage;
+export default Edit;
 
 const Root = styled.div`
   display: flex;
@@ -43,7 +86,7 @@ const Root = styled.div`
   height: 100vh;
   color: #333;
 
-  @media screen and (max-width: 1000px){
+  @media screen and (max-width: 1100px){
     flex-direction: column;
   }
 `
@@ -74,7 +117,7 @@ const Left = styled.div`
   height: 100%;
   border-right: 1px solid #707070;
 
-  @media screen and (max-width: 1000px){
+  @media screen and (max-width: 1100px){
     width: 100%;
     height: 32%;
     border-right: none;
@@ -103,7 +146,7 @@ const Backtop = styled.div`
     background-color: #FFFFFF;
   }
 
-  @media screen and (max-width: 1000px){
+  @media screen and (max-width: 1100px){
     width: 100%;
     height: 100%;
 
@@ -134,7 +177,7 @@ const Userimg = styled.div`
     color: #000000;
   }
 
-  @media screen and (max-width: 1000px){
+  @media screen and (max-width: 1100px){
     & > svg{
       bottom: -80px;
       width: 95px !important;
@@ -155,7 +198,7 @@ const Username = styled.div`
   font-size: 2.4rem;
   text-align: center;
 
-  @media screen and (max-width: 1000px){
+  @media screen and (max-width: 1100px){
     bottom: -104px;
     color: #707070;
     font-size: 2rem;
@@ -170,45 +213,51 @@ const Right = styled.div`
   width: 50%;
   height: 100%;
 
-  @media screen and (max-width: 1000px){
+  @media screen and (max-width: 1100px){
     width: 100%;
-    align-items: unset;
     justify-content: unset; 
   }
 `
 
-const Itemwrap = styled.div`
-  @media screen and (max-width: 1000px){
-    margin-top: 201px;
-  }
-`
-
-const Item = styled.div`
-  text-align: center;
-`
-
-const Itemimg = styled.div`
-
-  & > svg{
-    width: 220px !important;
-    height: auto !important;
-    color: #000000;
-  }
-
-  @media screen and (max-width: 1000px){
-    & > svg{
-      width: 93px !important;
-      height: auto !important;
-      margin-bottom: 20px;
-    }
-  }
-`
-
-const Itemtxt = styled.p`
-  font-size: 1.8rem;
+const Accounteditwrap = styled.div`
   text-align: center;
 
-  @media screen and (max-width: 1000px){
-    font-size: 1.7rem;
+  @media screen and (max-width: 1100px){
+    margin-top: 148px;
   }
+`
+
+const Accountedittitle = styled.h1`
+  margin-bottom: 97px;
+  color: #707070;
+  font-size: 2.4rem;
+
+  @media screen and (max-width: 1100px){
+    margin-bottom: 27px;
+  }
+`
+
+const Accountedittext = styled.div`
+  margin-bottom: 125px;
+
+  @media screen and (max-width: 1100px){
+    margin-bottom: 44px;
+  }
+`
+
+const Accounteditname = styled.div`
+  margin-bottom: 75px;
+
+  @media screen and (max-width: 1100px){
+    margin-bottom: 29px;
+  }
+`
+
+const Accounteditpass = styled.div`
+`
+
+const Accounteditsubmit = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `
