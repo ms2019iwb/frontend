@@ -33,4 +33,10 @@ const Tabutton = styled(NavLink)`
     border-bottom: solid 3px ${props => props.activeColor};
     color: ${props => props.activeColor};
   }
+
+  @media screen and (max-width: 1100px) {
+    height: 24px;
+    line-height: 24px;
+    font-size: 1rem;
+  }
 `

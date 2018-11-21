@@ -23,7 +23,6 @@ const InputWithIcon = (props) => {
 export default InputWithIcon;
 
 InputWithIcon.defaultProps = {
-  mbSize: '0',
   id: '',
   icon: '',
   type: 'text',

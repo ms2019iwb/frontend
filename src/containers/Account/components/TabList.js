@@ -6,10 +6,10 @@ const TabList = () => {
   return (
     <List>
       <Item>
-        <Tab color='#707070' activeColor='#e95252' to='/login' text='ログイン' />
+        <Tab color='#ADADAD' activeColor='#e95252' to='/login' text='ログイン' />
       </Item>
       <Item>
-        <Tab color='#707070' activeColor='#e95252' to='/signup' text='新規登録' />
+        <Tab color='#ADADAD' activeColor='#e95252' to='/signup' text='新規登録' />
       </Item>
     </List>
   );
