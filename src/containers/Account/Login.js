@@ -4,15 +4,23 @@ import Top from './components/Top';
 import TabList from './components/TabList';
 import { faEnvelope, faKey } from '@fortawesome/free-solid-svg-icons';
 import InputWithIcon from '../../components/Form/InputWithIcon';
-import Button from '../../components/Button/Button';
+import SubmitButton from '../../components/Button/SubmitButton';
+import axios from 'axios';
+import { withRouter } from 'react-router';
 
 class Login extends Component {
-  state = {
-    data: {
-      mail: '',
-      pass: ''
-    }
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: {
+        mail: '',
+        pass: ''
+      }
+    };
+
+    // ログイン中はリダイレクト
+    if(sessionStorage.getItem("loginUser")) this.props.history.push('/');
+  }
 
   handleChange = event => {
     const data = {...this.state.data};
@@ -22,14 +30,42 @@ class Login extends Component {
       data: data
     });
 
-    console.log(data);
+    // console.log(data);
   };
+
+  SubmitHandler = event => {
+    event.preventDefault();
+
+    const user = {
+      email_address: this.state.data.mail,
+      password: this.state.data.pass
+    };
+
+    console.log('---START API: POST /login---');
+
+    axios
+      .post('https://frego-api.herokuapp.com/login', { user })
+      .then(response => {
+        if(response.data) {
+          console.log(response.data);
+          sessionStorage.setItem("loginUser",JSON.stringify(response.data));
+        }
+      })
+      .catch(error => {
+        console.log(error);
+      });
+
+    console.log('---END API: POST /login---');
+
+    // リダイレクト
+    this.props.history.push('/');
+  }
 
   render() {
     return (
       <Root>
         <Top />
-        <Form>
+        <Form onSubmit={this.SubmitHandler}>
           <Img src="../images/logo.png" alt="logo" />
           <Nav>
             <TabList />
@@ -59,7 +95,7 @@ class Login extends Component {
             </InputItem>
           </InputList>
           <Action>
-            <Button text="ログイン" />
+            <SubmitButton val="ログイン" />
           </Action>
         </Form>
       </Root>
@@ -67,7 +103,7 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default withRouter(Login);
 
 const Root = styled.div`
   display: flex;

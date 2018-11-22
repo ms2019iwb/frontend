@@ -1,10 +1,12 @@
 import React from 'react';
 import {
   BrowserRouter as Router,
-  Route
+  Route, Switch
 } from 'react-router-dom';
 import Login from './containers/Account/Login';
 import Signup from './containers/Account/Signup';
+import Auth from './containers/Auth';
+import Top from './containers/Top';
 import Mypage from './containers/Mypage/Mypage';
 import ReportForm from './containers/Report/Form';
 import ReportDetails from './containers/Report/Details';
@@ -13,54 +15,33 @@ import Edit from './containers/Mypage/Edit';
 import Report from './containers/Report/Report';
 import './App.css';
 
+// ログインステータス設定
+let loginStatus;
+if(sessionStorage.getItem("loginUser")) {
+  loginStatus = true;
+} else {
+  loginStatus = false;
+}
+
 const App = () => (
   <Router>
-    <React.Fragment>
-      <Route exact path="/" component={Login}/>
-      <Route exact path="/login" component={Login}/>
-      <Route exact path="/signup" component={Signup}/>
-      <Route exact path="/mypage" component={Mypage}/>
-      <Route exact path="/account" component={Edit}/>
-      <Route exact path="/report" component={Report}/>
-      <Route exact path="/report/form" component={ReportForm} />
-      <Route exact path="/report/details" component={ReportDetails} />
-      <Route exact path="/report/edit" component={ReportEdit} />
-    </React.Fragment>
+    <Switch>
+      <Route exact path="/login" component={Login} />
+      <Route exact path="/signup" component={Signup} />
+      {/* 以下ログイン時のみ */}
+      <Auth loginStatus={loginStatus}>
+        <Switch>
+          <Route exact path="/" component={Top} />
+          <Route exact path="/mypage" component={Mypage} />
+          <Route exact path="/account" component={Edit} />
+          <Route exact path="/report" component={Report} />
+          <Route exact path="/report/form" component={ReportForm} />
+          <Route exact path="/report/details" component={ReportDetails} />
+          <Route exact path="/report/edit" component={ReportEdit} />
+        </Switch>
+      </Auth>
+    </Switch>
   </Router>
 )
-
-// const Topics = ({ match }) => (
-//   <div>
-//     <h2>Topics</h2>
-//     <ul>
-//       <li>
-//         <Link to={`${match.url}/rendering`}>
-//           Rendering with React
-//         </Link>
-//       </li>
-//       <li>
-//         <Link to={`${match.url}/components`}>
-//           Components
-//         </Link>
-//       </li>
-//       <li>
-//         <Link to={`${match.url}/props-v-state`}>
-//           Props v. State
-//         </Link>
-//       </li>
-//     </ul>
-
-//     <Route path={`${match.url}/:topicId`} component={Topic}/>
-//     <Route exact path={match.url} render={() => (
-//       <h3>Please select a topic.</h3>
-//     )}/>
-//   </div>
-// )
-
-// const Topic = ({ match }) => (
-//   <div>
-//     <h3>{match.params.topicId}</h3>
-//   </div>
-// )
 
 export default App

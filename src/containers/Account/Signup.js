@@ -4,16 +4,24 @@ import Top from './components/Top';
 import TabList from './components/TabList';
 import { faEnvelope, faKey, faUser } from '@fortawesome/free-solid-svg-icons';
 import InputWithIcon from '../../components/Form/InputWithIcon';
-import Button from '../../components/Button/Button';
+import SubmitButton from '../../components/Button/SubmitButton';
+import axios from 'axios';
+import { withRouter } from 'react-router';
 
 class Signup extends Component {
-  state = {
-    data: {
-      mail: '',
-      pass: '',
-      name: ''
-    }
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: {
+        mail: '',
+        pass: '',
+        name: ''
+      }
+    };
+
+    // ログイン中はリダイレクト
+    if(sessionStorage.getItem("loginUser")) this.props.history.push('/');
+  }
 
   txtChange = event => {
     const data = {...this.state.data};
@@ -21,14 +29,44 @@ class Signup extends Component {
     this.setState({
       data:data
     });
-    console.log(data);
+    // console.log(data);
+  };
+
+  submitHandler = event => {
+    event.preventDefault();
+
+    const user = {
+      email_address: this.state.data.mail,
+      screen_name: this.state.data.name,
+      password: this.state.data.pass,
+      password_confirmation: this.state.data.pass
+    };
+
+    console.log('---START API: POST /users---');
+
+    axios
+      .post('https://frego-api.herokuapp.com/users', { user })
+      .then(response => {
+        if(response.data) {
+          console.log(response.data);
+          sessionStorage.setItem("loginUser",JSON.stringify(response.data));
+        }
+      })
+      .catch(error => {
+        console.log(error);
+      });
+
+    console.log('---END API: POST /users---');
+
+    // リダイレクト
+    this.props.history.push('/');
   };
 
   render() {
     return (
       <Root>
         <Top />
-        <Form>
+        <Form onSubmit={this.submitHandler}>
           <Img src="../images/logo.png" alt="logo" />
           <Nav>
             <TabList />
@@ -69,7 +107,7 @@ class Signup extends Component {
             </InputItem>
           </InputList>
           <Action>
-            <Button text="登録" />
+            <SubmitButton val="登録" />
           </Action>
         </Form>
       </Root>
@@ -77,7 +115,7 @@ class Signup extends Component {
   }
 }
 
-export default Signup;
+export default withRouter(Signup);
 
 const Root = styled.div`
     display: flex;
