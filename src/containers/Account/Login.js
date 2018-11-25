@@ -15,7 +15,9 @@ class Login extends Component {
       data: {
         mail: '',
         pass: ''
-      }
+      },
+      // 認証状態メッセージ
+      statusMsg: ''
     };
 
     // ログイン中はリダイレクト
@@ -23,14 +25,12 @@ class Login extends Component {
   }
 
   handleChange = event => {
-    const data = {...this.state.data};
-    data[event.target.name] = event.target.value;
+    const updateData = {...this.state.data};
+    updateData[event.target.name] = event.target.value;
 
     this.setState({
-      data: data
+      data: updateData
     });
-
-    // console.log(data);
   };
 
   SubmitHandler = event => {
@@ -41,24 +41,31 @@ class Login extends Component {
       password: this.state.data.pass
     };
 
-    console.log('---START API: POST /login---');
+    console.log('【frego-api】HTTPリクエスト開始: POST /login');
+
+    this.setState({
+      statusMsg: '認証中'
+    });
 
     axios
       .post('https://frego-api.herokuapp.com/login', { user })
       .then(response => {
         if(response.data) {
-          console.log(response.data);
-          sessionStorage.setItem("loginUser",JSON.stringify(response.data));
+          console.log('【frego-api】HTTPリクエスト正常終了: ', response.data);
+          this.setState({
+            statusMsg: '認証に成功しました。'
+          });
+          sessionStorage.setItem("loginUser", JSON.stringify(response.data));
+          // リダイレクト
+          this.props.history.push('/');
         }
       })
       .catch(error => {
-        console.log(error);
+        console.log('【frego-api】HTTPリクエスト異常終了: ', error);
+        this.setState({
+          statusMsg: '認証に失敗しました。'
+        });
       });
-
-    console.log('---END API: POST /login---');
-
-    // リダイレクト
-    this.props.history.push('/');
   }
 
   render() {
@@ -70,6 +77,7 @@ class Login extends Component {
           <Nav>
             <TabList />
           </Nav>
+          <div>{this.state.statusMsg}</div>
           <InputList>
             <InputItem>
               <InputWithIcon

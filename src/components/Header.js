@@ -4,6 +4,19 @@ import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router';
 
 class Header extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      screen_name: ''
+    };
+  }
+
+  componentDidMount() {
+    this.setState({
+      screen_name: JSON.parse(sessionStorage.getItem("loginUser")).screen_name
+    });
+  }
+
   Logout = event => {
     event.preventDefault();
     sessionStorage.removeItem('loginUser');
@@ -17,7 +30,7 @@ class Header extends Component {
         <Logo to="/"><Img src="../images/logo.png" alt="logo" /></Logo>
         <Navi to="/report">発生火災一覧</Navi>
         <Navi to="/report/form">火災報告</Navi>
-        <Navi to="/mypage">{JSON.parse(sessionStorage.getItem("loginUser")).screen_name}さん</Navi>
+        <Navi to="/mypage">{this.state.screen_name}さん</Navi>
         <button onClick={this.Logout}>ログアウト</button>
       </Root>
     );
