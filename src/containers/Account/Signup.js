@@ -16,7 +16,9 @@ class Signup extends Component {
         mail: '',
         pass: '',
         name: ''
-      }
+      },
+      // 登録状態メッセージ
+      statusMsg: ''
     };
 
     // ログイン中はリダイレクト
@@ -42,24 +44,31 @@ class Signup extends Component {
       password_confirmation: this.state.data.pass
     };
 
-    console.log('---START API: POST /users---');
+    console.log('【frego-api】HTTPリクエスト開始: POST /users---');
+
+    this.setState({
+      statusMsg: '登録中'
+    });
 
     axios
       .post('https://frego-api.herokuapp.com/users', { user })
       .then(response => {
         if(response.data) {
-          console.log(response.data);
+          console.log('【frego-api】HTTPリクエスト正常終了: ', response.data);
+          this.setState({
+            statusMsg: '登録に成功しました。'
+          });
           sessionStorage.setItem("loginUser",JSON.stringify(response.data));
+          // リダイレクト
+          this.props.history.push('/');
         }
       })
       .catch(error => {
-        console.log(error);
+        console.log('【frego-api】HTTPリクエスト異常終了: ', error);
+        this.setState({
+          statusMsg: '登録に失敗しました。'
+        });
       });
-
-    console.log('---END API: POST /users---');
-
-    // リダイレクト
-    this.props.history.push('/');
   };
 
   render() {
@@ -71,6 +80,7 @@ class Signup extends Component {
           <Nav>
             <TabList />
           </Nav>
+          <div>{this.state.statusMsg}</div>
           <InputList>
             <InputItem>
               <InputWithIcon

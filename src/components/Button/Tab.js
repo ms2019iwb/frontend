@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 
 const Tab = (props) => {
   return (
-    <Tabutton color={props.color} activeColor={props.activeColor} to={props.to}>
+    <Tabutton color={props.color} activecolor={props.activeColor} to={props.to}>
       {props.text}
     </Tabutton>
   );
@@ -12,7 +12,7 @@ const Tab = (props) => {
 
 Tab.defaultProps = {
   color: '#707070',
-  activeColor: '#e95252',
+  activecolor: '#e95252',
   to: '/',
   text: ''
 };
@@ -30,8 +30,8 @@ const Tabutton = styled(NavLink)`
   color: ${props => props.color};
 
   &.active {
-    border-bottom: solid 3px ${props => props.activeColor};
-    color: ${props => props.activeColor};
+    border-bottom: solid 3px ${props => props.activecolor};
+    color: ${props => props.activecolor};
   }
 
   @media screen and (max-width: 1100px) {
