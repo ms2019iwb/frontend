@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import logo from '../../../images/logo.png';
 
 class Top extends Component {
   render() {
     return (
       <Root>
-        <Img src="../images/logo.png" alt="logo" />
+        <Img src={logo} alt="logo" />
         <Concept>
-          テキストテキストテキストテキスト<br />
-          テキストテキストテキストテキスト<br />
-          テキストテキストテキストテキスト
+          火災という一刻を争う災害に対して、<br />
+          正確な情報を迅速に<br />
+          伝えることができるプラットフォーム
         </Concept>
       </Root>
     );

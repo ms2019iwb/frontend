@@ -7,6 +7,7 @@ import InputWithIcon from '../../components/Form/InputWithIcon';
 import SubmitButton from '../../components/Button/SubmitButton';
 import axios from 'axios';
 import { withRouter } from 'react-router';
+import Variable from '../../variables/Variable';
 
 class Signup extends Component {
   constructor(props) {
@@ -31,7 +32,6 @@ class Signup extends Component {
     this.setState({
       data:data
     });
-    // console.log(data);
   };
 
   submitHandler = event => {
@@ -44,21 +44,21 @@ class Signup extends Component {
       password_confirmation: this.state.data.pass
     };
 
-    console.log('【frego-api】HTTPリクエスト開始: POST /users---');
+    console.log('【frego-api】HTTPリクエスト開始: POST /users');
 
     this.setState({
       statusMsg: '登録中'
     });
 
     axios
-      .post('https://frego-api.herokuapp.com/users', { user })
+      .post(`${Variable.FREGO_API_BASE_ENDPOINT}/users`, { user })
       .then(response => {
         if(response.data) {
           console.log('【frego-api】HTTPリクエスト正常終了: ', response.data);
           this.setState({
             statusMsg: '登録に成功しました。'
           });
-          sessionStorage.setItem("loginUser",JSON.stringify(response.data));
+          sessionStorage.setItem('loginUser', JSON.stringify(response.data));
           // リダイレクト
           this.props.history.push('/');
         }
