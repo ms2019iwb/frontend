@@ -5,7 +5,7 @@ const Input = (props) => {
   return(
     <Radiowrap>
       <Radioinput type='radio' name={props.name} value={props.value} id={props.id}></Radioinput>
-      <Label for={props.id} borderradius={props.borderradius}>
+      <Label htmlFor={props.id} borderRadius={props.borderRadius} onClick={props.onClick}>
         {props.text}
       </Label>
     </Radiowrap>
@@ -18,7 +18,7 @@ Input.defaultProps = {
   name: '',
   value: '',
   id: '',
-  borderradius: '0px 0px 0px 0px',
+  borderRadius: '0',
   text: ''
 };
 
@@ -46,9 +46,8 @@ const Label = styled.label`
   width: 80px;
   height: 35px;
   border: 1px solid #254FAE;
-  border-radius: ${props => props.borderradius};
+  border-radius: ${props => props.borderRadius};
   box-shadow: 0px 3px 2px rgba(0,0,0,0.16);
   color: #254FAE;
   font-size: 1.4rem;
-  }
 `
