@@ -1,34 +1,36 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import Header from '../../components/Header';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser, faAddressCard } from '@fortawesome/free-solid-svg-icons';
-
 
 class Mypage extends Component {
   render() {
     return (
       <Root>
-        <Header>Header</Header>
-        <Left>
-          <Backtop>
-            <Userimg>
-              <FontAwesomeIcon icon={faUser} />
-            </Userimg>
-            <Username>名前が入ります</Username>
-          </Backtop>
-        </Left>
-        <Right>
-          <Itemwrap>
-            <Item>
-              <Itemimg>
-                <FontAwesomeIcon icon={faAddressCard} />
-              </Itemimg>
-              <Itemtxt>
-                アカウント情報変更
-              </Itemtxt>
-            </Item>
-          </Itemwrap>
-        </Right>
+        <Header />
+        <Main>
+          <Left>
+            <Backtop>
+              <Userimg>
+                <FontAwesomeIcon icon={faUser} />
+              </Userimg>
+              <Username>名前が入ります</Username>
+            </Backtop>
+          </Left>
+          <Right>
+            <Itemwrap>
+              <Item>
+                <Itemimg>
+                  <FontAwesomeIcon icon={faAddressCard} />
+                </Itemimg>
+                <Itemtxt>
+                  アカウント情報変更
+                </Itemtxt>
+              </Item>
+            </Itemwrap>
+          </Right>
+        </Main>
       </Root>
     );
   }
@@ -37,38 +39,23 @@ class Mypage extends Component {
 export default Mypage;
 
 const Root = styled.div`
+  width: 100%;
+  color: #333;
+`
+
+const Main = styled.main`
   display: flex;
   position: relative;
   width: 100%;
-  height: 100vh;
-  color: #333;
+  height: calc(100vh - 80px);
 
   @media screen and (max-width: 1000px){
     flex-direction: column;
   }
 `
 
-const Header = styled.header`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  position: fixed;
-  top: 0;
-  z-index: 1;
-  width: 100%;
-  height: 80px;
-  border-bottom: 1px solid #707070;
-  background-color: #FFFFFF;
-  color: #060606;
-  font-size: 3rem;
-`
 const Left = styled.div`
   position: relative;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -ms-box-sizing: border-box;
-  -o-box-sizing: border-box;
   box-sizing: border-box;
   width: 50%;
   height: 100%;
