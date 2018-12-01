@@ -24,3 +24,5 @@ yarn-error.log*
 *.sublime-project
 *.sublime-workspace
 .vscode
+
+/src/variables/Variable.js

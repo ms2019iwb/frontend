@@ -1,33 +1,119 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import Input from '../../components/Form/Input';
+import Header from '../../components/Header';
+import axios from 'axios';
+import { withRouter } from 'react-router';
+import Variable from '../../variables/Variable';
 
 class Form extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      title: '',
+      report_status: '',
+      ambulance_status: '',
+      fire_fighting_status: '',
+      address: '',
+      lat: '',
+      lng: '',
+      post_user_id: '',
+      comment: ''
+    };
+  }
+
+  componentDidMount() {
+    console.log(`【frego-api】HTTPリクエスト開始: GET /posts/${this.props.computedMatch.params.id}`);
+
+    // 火災レポート1件取得
+    axios
+      .get(`${Variable.FREGO_API_BASE_ENDPOINT}/posts/${this.props.computedMatch.params.id}`)
+      .then(response => {
+        if(response.data) {
+          console.log('【frego-api】HTTPリクエスト正常終了: ', response.data);
+          this.setState({
+            title: response.data.title,
+            report_status: response.data.report_status,
+            ambulance_status: response.data.ambulance_status,
+            fire_fighting_status: response.data.fire_fighting_status,
+            address: response.data.address,
+            lat: response.data.lat,
+            lng: response.data.lng,
+            post_user_id: response.data.post_user_id
+          });
+        }
+      })
+      .catch(error => {
+        console.log('【frego-api】HTTPリクエスト異常終了: ', error);
+      });
+  }
+
+  formUpdate = event => {
+    const updateData = {...this.state};
+    updateData[event.target.name] = event.target.value;
+    this.setState({
+      comment: updateData
+    });
+
+    console.log(this.state);
+  }
+
+  submitHandler = event => {
+    event.preventDefault();
+
+    const data = {
+      title: this.state.title,
+      report_status: this.state.report_status,
+      ambulance_status: this.state.ambulance_status,
+      fire_fighting_status: this.state.fire_fighting_status,
+      address: this.state.address,
+      lat: this.state.lat,
+      lng: this.state.lng,
+      post_user_id: this.state.post_user_id
+    };
+
+    console.log(`【frego-api】HTTPリクエスト開始: PATCH /posts/${this.props.computedMatch.params.id}`);
+
+    axios
+      .patch(`${Variable.FREGO_API_BASE_ENDPOINT}/posts/${this.props.computedMatch.params.id}`, { post: data })
+      .then(response => {
+        if(response.data) {
+          console.log('【frego-api】HTTPリクエスト正常終了: ', response.data);
+          // リダイレクト
+          this.props.history.push(`/report/${this.props.computedMatch.params.id}`);
+        }
+      })
+      .catch(error => {
+        console.log('【frego-api】HTTPリクエスト異常終了: ', error);
+      });
+  }
+
   render() {
     return(
-      <Report>
-        <Header>Header</Header>
+      <Root>
+        <Header />
         <Mark>マーク</Mark>
-        <Houkoku>火災は位置情報と共に報告されました！</Houkoku>
-        <Reportform>
-          <Check>チェック</Check>
+        <Message>{this.state.address === '' ? '火災は位置情報無しで報告されました！' : '火災は位置情報と共に報告されました！'}</Message>
+        <ReportForm onSubmit={this.submitHandler}>
+          <Title>{this.state.title}</Title>
           <Joukyo>詳しい状況をレポートしてください</Joukyo>
           <Radiowrap>
             <Radiotop>
               <Radiotext>通報</Radiotext>
-              <Input text='未通報' borderradius='10px 0px 0px 10px' name='tr' value='0' id='mitu' />
-              <Input text='通報済み' borderradius='0px 0px 0px 0px' name='tr' value='1' id='tuhozumi' />
-              <Input text='不明' borderradius='0px 10px 10px 0px' name='tr' value='2' id='humei' />
+              <Input text='未通報' borderRadius='10px 0 0 10px' name='report_status' value='1' id='mitu' onClick={() => this.setState({report_status: '1'})} />
+              <Input text='通報済み' bordeRradius='0' name='report_status' value='2' id='tuhozumi' onClick={() => this.setState({report_status: '2'})} />
+              <Input text='不明' borderRadius='0 10px 10px 0' name='report_status' value='3' id='humei' onClick={() => this.setState({report_status: '3'})} />
             </Radiotop>
             <Radiounder>
               <Radiotext>救急車</Radiotext>
-              <Input text='未到着' borderradius='10px 0px 0px 10px' name='tk' value='0' id='mito' />
-              <Input text='到着済み' borderradius='0px 0px 0px 0px' name='tk' value='1' id='tozumi' />
-              <Input text='不要' borderradius='0px 10px 10px 0px' name='tk' value='2' id='huyo' />
+              <Input text='未到着' borderRadius='10px 0 0 10px' name='ambulance_status' value='1' id='mito' onClick={() => this.setState({ambulance_status: '1'})} />
+              <Input text='到着済み' borderRradius='0' name='ambulance_status' value='2' id='tozumi' onClick={() => this.setState({ambulance_status: '2'})} />
+              <Input text='不要' borderRadius='0' name='ambulance_status' value='3' id='huyo' onClick={() => this.setState({ambulance_status: '3'})} />
+              <Input text='不明' borderRadius='0 10px 10px 0' name='ambulance_status' value='4' id='unkown' onClick={() => this.setState({ambulance_status: '4'})} />
             </Radiounder>
           </Radiowrap>
           <Reporttext>
-            <Textarea placeholder="詳細な情報を教えてください"></Textarea>
+            <Textarea name="comment" placeholder="詳細な情報を教えてください" onChange={this.formUpdate}>{this.state.comment}</Textarea>
           </Reporttext>
           <Reportfile>
             <Fileup>
@@ -40,62 +126,47 @@ class Form extends Component {
             <Filename>ファイル名.....</Filename>
           </Reportfileimg>
           <Reportsubmit>
-            <Submit type='submit'></Submit>
+            <Submit type='submit' value='登録' />
           </Reportsubmit>
-        </Reportform>
-      </Report>
+        </ReportForm>
+      </Root>
     );
   }
 }
 
-export default Form;
+export default withRouter(Form);
 
-const Report = styled.div`
+const Root = styled.div`
   width: 100%;
   height: 100%;
   background-color: #F58989;
   text-align: center;
   color: #FFFFFF;
+
   @media screen and (max-width: 800px) {
     background-color: #FFFFFF;
     color: #254FAE;
   }
 `
 
-const Header = styled.header`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 80px;
-  margin-bottom: 78px;
-  border-bottom: 1px solid #707070;
-  background-color: #FFFFFF;
-  color: #060606;
-  font-size: 3rem;
-  @media screen and (max-width: 800px) {
-    height: 60px;
-    margin-bottom: 31px;
-  }
-`
-
 const Mark = styled.div`
-  margin-bottom: 20px;
+  margin: 78px 0 20px;
+
   @media screen and (max-width: 800px) {
-    margin-bottom: 8px;
+    margin: 31px 0 8px;
   }
 `
 
-const Houkoku = styled.p`
+const Message = styled.p`
   margin-bottom: 30px;
   font-size: 2rem;
+
   @media screen and (max-width: 800px) {
     margin-bottom: 29px;
   }
 `
 
-const Reportform = styled.form`
+const ReportForm = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -108,6 +179,7 @@ const Reportform = styled.form`
   border-radius: 40px;
   background-color: #FFFFFF;
   color: #254FAE;
+
   @media screen and (max-width: 800px) {
     height: auto;
     margin-bottom: 0px;
@@ -115,11 +187,10 @@ const Reportform = styled.form`
     padding-bottom: 39px;
     border: none;
     border-radius: none;
-    
   }
 `
 
-const Check = styled.p`
+const Title = styled.p`
   margin-bottom: 17px;
   font-size: 2.4rem;
 `
@@ -160,6 +231,7 @@ const Textarea = styled.textarea`
   padding: 4px 6px;
   border: 1px solid #254FAE;
   border-radius: 10px;
+
   &::-webkit-input-placeholder{
     color: #A2A2A2;
     font-size: 1.2rem;
