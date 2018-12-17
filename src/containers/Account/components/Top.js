@@ -35,7 +35,7 @@ const Root = styled.div`
 
 const Img = styled.img`
   width: 392px;
-  margin-bottom: 215px;
+  margin-bottom: 175px;
 
   @media screen and (max-width: 1100px) {
     display: none;
@@ -45,6 +45,7 @@ const Img = styled.img`
 const Concept = styled.p`
   color: #fff;
   text-align: center;
-  line-height: 56px;
-  font-size: 2.4rem;
+  line-height: 60px;
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 3rem;
 `

@@ -175,7 +175,7 @@ const DetailHeader = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-bottom: 2px solid #254FAE;
+  border-bottom: solid 2px #254FAE;
   background-color: #F58989;
   padding: 20px 0;
   width: 100%;
@@ -190,7 +190,7 @@ const Title = styled.p`
 
 const DateTimeList = styled.ul`
   display: flex;
-  margin-bottom: 3px;
+  margin-bottom: 20px;
 `
 
 const CreatedAt = styled.li`
@@ -207,7 +207,6 @@ const UpdateAtIcon = styled(FontAwesomeIcon)`
 `
 
 const Etc = styled.p`
-  margin-bottom: 23px;
   font-size: 2.4rem;
   
   @media screen and (max-width: 1000px) {
@@ -227,12 +226,11 @@ const EtcIcon = styled(FontAwesomeIcon)`
 `
 
 const StatusList = styled.ul`
-  margin-bottom: 36px;
+  margin: 20px 0 36px;
 `
 
 const StatusItem = styled.li`
   display: flex;
-  justify-content: center;
 
   &:not(:last-child) {
     margin-bottom: 19px;

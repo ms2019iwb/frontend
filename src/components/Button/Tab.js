@@ -26,6 +26,7 @@ const Tabutton = styled(NavLink)`
   height: 50px;
   line-height: 50px;
   text-align: center;
+  font-family: 'Noto Sans JP', sans-serif;
   font-size: 2.4rem;
   color: ${props => props.color};
 

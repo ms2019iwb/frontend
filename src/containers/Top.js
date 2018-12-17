@@ -1,10 +1,73 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import Header from '../components/Header';
+import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFire, faFireExtinguisher } from '@fortawesome/free-solid-svg-icons';
+import Variable from '../variables/Variable';
 
 class Top extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      // 炎上中総数
+      burnNumber: 0,
+      // 消火済み総数
+      exNumber: 0
+    }
+  }
+
+  async componentDidMount() {
+    await this.fetchBurnCount();
+    await this.fetchExCount();
+  }
+
+  // 炎上中総数取得
+  fetchBurnCount() {
+    return new Promise((resolve, reject) => {
+      console.log('【frego-api】HTTPリクエスト開始: GET /posts/burncount');
+
+      axios
+      .get(`${Variable.FREGO_API_BASE_ENDPOINT}/burncount`)
+      .then(response => {
+        if(response.data) {
+          console.log('【frego-api】HTTPリクエスト正常終了: ', response.data);
+          this.setState({
+            burnNumber: response.data
+          });
+          resolve();
+        }
+      })
+      .catch(error => {
+        console.log('【frego-api】HTTPリクエスト異常終了', error);
+        reject();
+      });
+    });
+  }
+
+  // 消火済み総数取得
+  fetchExCount() {
+    return new Promise((resolve, reject) => {
+      console.log('【frego-api】HTTPリクエスト開始: GET /posts/excount');
+
+      axios
+      .get(`${Variable.FREGO_API_BASE_ENDPOINT}/excount`)
+      .then(response => {
+        if(response.data) {
+          console.log('【frego-api】HTTPリクエスト正常終了: ', response.data);
+          this.setState({
+            exNumber: response.data
+          });
+          resolve();
+        }
+      })
+      .catch(error => {
+        console.log('【frego-api】HTTPリクエスト異常終了', error);
+        reject();
+      });
+    });
+  }
+
   render() {
     return (
       <Root>
@@ -12,11 +75,11 @@ class Top extends Component {
         <Title>ダッシュボード</Title>
         <Countzone>
           <Firecount>
-            <Finumber>120件</Finumber>
+            <Finumber>{this.state.burnNumber}件</Finumber>
             <Fitext>炎上中<FontAwesomeIcon icon={faFire} /></Fitext>
           </Firecount>
           <Extinguishingcount>
-            <Exnumber>120件</Exnumber>
+            <Exnumber>{this.state.exNumber}件</Exnumber>
             <Extext>消火済み<FontAwesomeIcon icon={faFireExtinguisher} /></Extext>
           </Extinguishingcount>
         </Countzone>

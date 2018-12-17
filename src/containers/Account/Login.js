@@ -8,6 +8,7 @@ import SubmitButton from '../../components/Button/SubmitButton';
 import axios from 'axios';
 import { withRouter } from 'react-router';
 import Variable from '../../variables/Variable';
+import logo from '../../images/logo.png';
 
 class Login extends Component {
   constructor(props) {
@@ -74,7 +75,7 @@ class Login extends Component {
       <Root>
         <Top />
         <Form onSubmit={this.SubmitHandler}>
-          <Img src="../images/logo.png" alt="logo" />
+          <Img src={logo} alt="logo" />
           <Nav>
             <TabList />
           </Nav>

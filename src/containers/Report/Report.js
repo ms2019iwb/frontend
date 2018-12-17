@@ -147,6 +147,21 @@ class Report extends Component {
         <Main>
           <ReportList>
             {this.state.reports.map(item => {
+              let iconColor
+              switch(item.fire_fighting_status) {
+                // 未消火
+                case '1':
+                  iconColor = '#ec1d1d';
+                  break;
+                // 消火済み
+                case '2':
+                  iconColor = '#254fae';
+                  break;
+                // 不明
+                case '3':
+                  iconColor = '#777';
+                  break;
+              }
               return(
                 <ReportItem key={item.id}>
                   <ReportLink to={`/report/${item.id}`}>
@@ -169,7 +184,7 @@ class Report extends Component {
                         </tbody>
                       </ReportDetailList>
                     </ReportMain>
-                    <StatusIconArea><StatusIcon icon={faFire} /></StatusIconArea>
+                    <StatusIconArea><StatusIcon iconColor={iconColor} icon={faFire} /></StatusIconArea>
                   </ReportLink>
                 </ReportItem>
               );
@@ -289,7 +304,7 @@ const StatusIconArea = styled.div`
 
 const StatusIcon = styled(FontAwesomeIcon)`
   font-size: 7.5rem;
-  color: #EC1D1D;
+  color: ${props => props.iconColor};
 `
 
 const PageArea = styled.div`
