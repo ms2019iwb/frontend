@@ -25,7 +25,7 @@ const Root = styled.div`
   align-items: center;
   width: 50%;
   height: 100vh;
-  background-color: #f58989;
+  background-color: #391B4D;
 
   @media screen and (max-width: 1100px) {
     width: 100%;
@@ -34,7 +34,7 @@ const Root = styled.div`
 
 const Img = styled.img`
   width: 392px;
-  margin-bottom: 215px;
+  margin-bottom: 72px;
 
   @media screen and (max-width: 1100px) {
     display: none;

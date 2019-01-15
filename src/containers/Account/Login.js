@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import Top from './components/Top';
 import TabList from './components/TabList';
-import { faEnvelope, faKey } from '@fortawesome/free-solid-svg-icons';
 import InputWithIcon from '../../components/Form/InputWithIcon';
 import SubmitButton from '../../components/Button/SubmitButton';
 import axios from 'axios';
@@ -81,7 +80,6 @@ class Login extends Component {
           <InputList>
             <InputItem>
               <InputWithIcon
-                icon={faEnvelope}
                 id="mail"
                 type="mail"
                 name="mail"
@@ -92,7 +90,6 @@ class Login extends Component {
             </InputItem>
             <InputItem>
               <InputWithIcon
-                icon={faKey}
                 id="pass"
                 type="password"
                 name="pass"
@@ -165,10 +162,10 @@ const InputList = styled.ul`
 `
 
 const InputItem = styled.li`
-  height: 45px;
+  height: 25px;
 
   &:first-child {
-    margin-bottom: 75px;
+    margin-bottom: 71px;
   }
 
   @media screen and (max-width: 1100px) {
