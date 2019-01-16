@@ -25,10 +25,10 @@ const Root = styled.div`
   width: 400px;
   height: 99px;
   padding: 7px 10px;
-  border: 1px solid #F58989;
+  border: 1px solid #391B4D;
   border-radius: 10px;
   background-color: #FFFFFF;
-  color: #F58989;
+  color: #391B4D;
   font-size: 1.4rem;
 
   &::before{
@@ -50,7 +50,7 @@ const Root = styled.div`
 	  left: -17px;
  	  margin-top: -17px;
     border-top: 9px solid transparent;
-    border-right: 17px solid #F58989;
+    border-right: 17px solid #391B4D;
     border-bottom: 9px solid transparent;
  	  z-index: 1;
   }
@@ -73,7 +73,7 @@ const Root = styled.div`
 	    left: -11px;
  	    margin-top: -11px;
       border-top: 9px solid transparent;
-      border-right: 11px solid #F58989;
+      border-right: 11px solid #391B4D;
       border-bottom: 9px solid transparent;
     }
   }

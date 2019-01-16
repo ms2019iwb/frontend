@@ -175,13 +175,24 @@ class FireFighting extends Component {
       <Root>
         <Header />
         <Main>
-          <Title>消火活動<br />{this.state.report.title}</Title>
+          <Title>消火活動</Title>
+          <Address>{this.state.report.title}</Address>
           <DetailLink to={`/report/${this.props.computedMatch.params.id}`}>火災レポート詳細へ戻る</DetailLink>
           {(() => {
             if(this.state.report.fire_fighting_status === '2') {
-              return <Description>鎮火は完了しました<FontAwesomeIcon icon={faCheckCircle} /></Description>;
+              return (
+                <DescriptionCompletion>
+                  <DescriptionCompletionText>鎮火は完了しました</DescriptionCompletionText>
+                  <DescriptionCompletionIcon><FontAwesomeIcon icon={faCheckCircle} /></DescriptionCompletionIcon>
+                </DescriptionCompletion>
+              );
             } else if(this.state.report.fire_fighting_status === '1' && this.state.updateFlag === false) {
-              return <ActionButton onClick={this.startUpdateStatus}>開始</ActionButton>;
+              return(
+                <Action>
+                  <ActionText>開始ボタンを押すと活動が開始します</ActionText>
+                  <ActionButton onClick={this.startUpdateStatus}>開始</ActionButton>
+                </Action>
+                );
             } else if(this.state.updateFlag === true) {
               return(
                 <React.Fragment>
@@ -210,53 +221,71 @@ const Main = styled.main`
   flex-direction: column;
   align-items: center;
   width: 100%;
-  padding: 50px 0;
+  padding: 66px 0;
 `
 
 const Title = styled.div`
-  margin-bottom: 30px;
+  margin-bottom: 10px;
   text-align: center;
-  font-weight: bold;
-  font-size: 3rem;
+  font-size: 2.6rem;
+  color: #A552DD;
+`
+
+const Address = styled.div`
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 22px;
+  color: #2C2B3F;
 `
 
 const DetailLink = styled(Link)`
-  margin-bottom: 30px;
-  font-size: 2rem;
-  color: #333;
-  text-decoration: underline;
+  margin-bottom: 70px;
+  font-size: 1.4rem;
+  color: #A7A7A7;
+`
+
+const Action = styled.div`
+  text-align: center;
+`
+
+const ActionText = styled.div`
+  margin-bottom: 25px;
+  font-size: 4rem;
+  color: #A7A7A7;
 `
 
 const ActionButton = styled.div`
-  margin-bottom: 30px;
-  background-color: #009f9d;
+  background-color: #FF000F;
+  border: 1px solid #2C2B3F;
   border-radius: 100%;
-  width: 100px;
-  height: 100px;
-  line-height: 100px;
+  width: 75px;
+  height: 75px;
+  margin: 0 auto;
+  margin-bottom: 40px;
+  line-height: 75px;
   text-align: center;
-  font-size: 3rem;
+  font-size: 2.2rem;
   color: #fff;
   cursor: pointer;
 `
 
 const Status = styled.div`
-  margin-bottom: 10px;
-  font-size: 3rem;
+  margin-bottom: 15px;
+  font-size: 2.2rem;
 `
 
 const Barometer = styled.div`
   position: relative;
-  border: solid 3px #333;
-  width: 1000px;
-  height: 100px;
+  border: solid 1px #2C2B3F;
+  width: 750px;
+  height: 75px;
 
   &::after {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
-    background-color: crimson;
+    background-color: #FF000F;
     width: ${props => props.status}%;
     height: 100%;
   }
@@ -264,6 +293,28 @@ const Barometer = styled.div`
 
 const Description = styled.div`
   /* display: ${props => props.updateFlag ? 'block' : 'none'}; */
-  margin-bottom: 30px;
-  font-size: 5rem;
+  margin-bottom: 25px;
+  color: #3C6DDA;
+  font-size: 4rem;
+`
+
+const DescriptionCompletion = styled.div`
+  /* display: ${props => props.updateFlag ? 'block' : 'none'}; */
+  color: #52B737;
+  font-size: 4rem;
+`
+
+const DescriptionCompletionText = styled.div`
+/* display: ${props => props.updateFlag ? 'block' : 'none'}; */
+  margin-bottom: 25px;
+  color: #52B737;
+  font-size: 4rem;
+  line-height: 4rem;
+`
+
+const DescriptionCompletionIcon = styled.div`
+  /* display: ${props => props.updateFlag ? 'block' : 'none'}; */
+  color: #52B737;
+  font-size: 4rem;
+  text-align: center;
 `

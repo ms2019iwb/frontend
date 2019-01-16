@@ -216,7 +216,7 @@ const Root = styled.form`
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  background-color: #F58989;
+  background-color: #391B4D;
   width: 100%;
 `
 
@@ -263,7 +263,7 @@ const ReportMain = styled.div`
 const ReportTitle = styled.p`
   font-size: 20px;
   font-weight: bold;
-  color: #F58989;
+  color: #A552DD;
 `
 
 const ReportDetailList = styled.table`

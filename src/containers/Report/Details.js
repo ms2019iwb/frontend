@@ -128,8 +128,8 @@ class Details extends Component {
                 height='30px'
                 border='none'
                 borderradius='5px 5px 5px 5px'
-                boxshadow='0px 0px 4px #F58989'
-                backgroundcolor='#F58989'
+                boxshadow='0px 0px 4px #391B4D'
+                backgroundcolor='#391B4D'
                 color='#FFFFFF'
                 fontsize='1.4rem'
                 text='送信'
@@ -177,7 +177,7 @@ const DetailHeader = styled.div`
   flex-direction: column;
   align-items: center;
   border-bottom: solid 2px #254FAE;
-  background-color: #F58989;
+  background-color: #391B4D;
   padding: 20px 0;
   width: 100%;
   color: #fff;
@@ -289,11 +289,11 @@ const Textarea = styled.textarea`
   height: 100px;
   margin-bottom: 19px;
   padding: 4px 6px;
-  border: 1px solid #F58989;
+  border: 1px solid #391B4D;
   border-radius: 10px;
 
   &::-webkit-input-placeholder{
-    color: #F58989;
+    color: #391B4D;
     font-size: 1.4rem;
   }
   

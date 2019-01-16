@@ -72,7 +72,7 @@ const Backtop = styled.div`
   position: relative;
   width: 100%;
   height: 44%;
-  background-color: #F58989;
+  background-color: #391B4D;
 
   &::before{
     content: '';
