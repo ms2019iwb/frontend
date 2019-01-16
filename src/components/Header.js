@@ -99,7 +99,7 @@ class Header extends Component {
 export default withRouter(Header);
 
 const Root = styled.nav`
-  background-color: #F58989;
+  background-color: #391B4D;
   width: 100%;
   height: 80px;
   z-index: 99;
@@ -138,7 +138,7 @@ const Mobile = styled.div`
 
 const Logo = styled(Link)`
   margin-right: auto;
-  width: 200px;
+  width: 151px;
 
   @media screen and (max-width: 1100px) {
     width: 113px;
@@ -156,8 +156,12 @@ const Nav = styled(NavLink)`
   font-size: 2rem;
   color: #fff;
 
+  &:hover {
+    border-bottom: solid 3px #FF000F;
+  }
+
   &.active {
-    border-bottom: solid 3px #fff;
+    border-bottom: solid 3px #FF000F;
   }
 `
 
@@ -171,7 +175,7 @@ const User = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: ${props => props.subNavDisplayStatus ? 'rgba(133, 74, 74, 0.25)' : '#F58989'};
+  background-color: ${props => props.subNavDisplayStatus ? 'rgba(57, 27, 77, 0.25)' : '#391B4D'};
   width: 100%;
   height: 100%;
   cursor: pointer;
@@ -189,7 +193,7 @@ const UserName = styled.div`
 `
 
 const Icon = styled(FontAwesomeIcon)`
-  color: #744040;
+  color: #fff;
 `
 
 const SubNavList = styled.ul`
@@ -197,7 +201,7 @@ const SubNavList = styled.ul`
   position: absolute;
   top: 80px;
   left: 0;
-  background-color: #F58989;
+  background-color: #391B4D;
   width: 160px;
 `
 
@@ -238,7 +242,7 @@ const MobileNavTrigger = styled.div`
     position: absolute;
     left: 7px;
     content: '';
-    background-color: #F58989;
+    background-color: #391B4D;
     width: 10px;
     height: 1px;
     transition: all 0.2s linear;
@@ -268,7 +272,7 @@ const MobileNavList = styled.ul`
   position: absolute;
   top: 60px;
   left: 0;
-  background-color: #F58989;
+  background-color: #391B4D;
   width: 100%;
 `
 
@@ -288,7 +292,7 @@ const MobileNav = styled(Link)`
   color: #fff;
 
   &:click {
-    background-color: rgba(133, 74, 74, 0.25);
+    background-color: rgba(57, 27, 77, 0.25);
   }
 `
 
@@ -303,6 +307,6 @@ const MobileNavText = styled.p`
   cursor: pointer;
 
   &:click {
-    background-color: rgba(133, 74, 74, 0.25);
+    background-color: rgba(57, 27, 77, 0.25);
   }
 `

@@ -123,7 +123,7 @@ const Root = styled.div``
 
 const Title = styled.h1`
   margin: 32px 0 30px 0;
-  color: #EF5A5A;
+  color: #A552DD;
   font-size: 2.6rem;
   text-align: center;
 `
@@ -141,7 +141,7 @@ const Firecount = styled.div`
   width: 350px;
   margin-right: 102px;
   box-shadow: 0px 0px 10px rgba(0,0,0,0.16);
-  background-color: #F06767;
+  background-color: #ec1d1d;
 `
 
 const Finumber = styled.div`
@@ -205,7 +205,7 @@ const Toppost = styled.div`
 `
 
 const Totitle = styled.div`
-  color: #EF5A5A;
+  color: #A552DD;
   font-size: 2.4rem;
   line-height: 36px;
 `
@@ -251,14 +251,14 @@ const Toimage = styled.div`
   & > svg{
     width: 58px !important;
     height: auto !important;
-    color: #EF5A5A;
+    color: #ec1d1d;
   }
 `
 
 const Postlist = styled.div`
   height: 40px;
   box-shadow: 0px 3px 6px rgba(0,0,0,0.16);
-  background-color: #F06767;
+  background-color: #8639ba;
   color: #FFFFFF;
   font-size: 2.4rem;
   line-height: 40px;
@@ -272,7 +272,7 @@ const Newupdate = styled.div`
 `
 
 const Netitle = styled.div`
-  color: #EF5A5A;
+  color: #A552DD;
   font-size: 2.4rem;
   line-height: 36px;
 `
@@ -297,7 +297,7 @@ const Netext = styled.div`
 const Uplist = styled.div`
   height: 40px;
   box-shadow: 0px 3px 6px rgba(0,0,0,0.16);
-  background-color: #F06767;
+  background-color: #8639ba;
   color: #FFFFFF;
   font-size: 2.4rem;
   line-height: 40px;

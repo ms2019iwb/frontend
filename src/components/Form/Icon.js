@@ -27,7 +27,7 @@ const Root = styled.div`
   -ms-box-sizing: border-box;
   width: 50px;
   height: 50px;
-  border: 1px solid #F58989;
+  border: 1px solid #391B4D;
   border-radius: 100%;
   box-shadow: none;
   background-color: #FFFFFF;
@@ -35,6 +35,6 @@ const Root = styled.div`
   & > SVG {
     width: 27px !important;
     height: auto !important;
-    color: #F58989;
+    color: #391B4D;
   }
 `
