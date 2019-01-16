@@ -34,8 +34,8 @@ const Root = styled.div`
 `
 
 const Img = styled.img`
-  width: 392px;
-  margin-bottom: 72px;
+  width: 375px;
+  margin-bottom: 70px;
 
   @media screen and (max-width: 1100px) {
     display: none;
