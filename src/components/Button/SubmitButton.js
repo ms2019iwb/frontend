@@ -20,19 +20,19 @@ const Root = styled.input`
   display: block;
   box-shadow: none;
   background-color: #FFFFFF;
-  border: 1px solid #EF5A5A;
+  border: 1px solid #A552DD;
   border-radius: 10px;
   width: 150px;
   height: 50px;
   line-height: 50px;
   text-align: center;
-  color: #EF5A5A;
+  color: #A552DD;
   font-size: 2rem;
   transition: 0.4s;
 
   &:hover{
-    box-shadow: #df0000 0px 0px 10px;
-    background-color: #ef5a5a;
+    box-shadow: #A552DD 0px 0px 10px;
+    background-color: #A552DD;
     border: none;
     color: #fff;
     transition: 0.4s;

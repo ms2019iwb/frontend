@@ -1,13 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const InputWithIcon = (props) => {
   return(
     <Root>
-      <Label htmlFor={props.id}>
-        <FontAwesomeIcon icon={props.icon} />
-      </Label>
       <Input
         id={props.id}
         type={props.type}
@@ -36,46 +32,30 @@ const Root = styled.div`
   height: 100%;
 `
 
-const Label = styled.label`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0 3px 6px rgba(0,0,0,0.3);
-  background-color: #EF5A5A;
-  border-radius: 15px 0 0 15px;
-  border-right: solid 1px #707070;
-  width: 45px;
-  height: 100%;
-  font-size: 3rem;
-  color: #fff;
-
-  & > svg {
-    font-size: 2rem;
-  }
-
-  @media screen and (max-width: 1100px){
-    border-radius: 10px 0 0 10px;
-    width: 42px;
-  }
-`
-
 const Input = styled.input`
   border: none;
-  border-radius: 0px 15px 15px 0px;
-  box-shadow: 0 3px 6px rgba(0,0,0,0.3);
-  background-color: #FFADAD;
-  padding: 0 14px;
-  width: 500px;
+  border-bottom: 1px solid #808080;
+  padding: 0 0 5px 5px;
+  width: 517px;
   height: 100%;
-  font-size: 2rem;
-  color: #fff;
+  font-size: 1.4rem;
+  color: #808080;
+
+  &:focus{
+    border-bottom: 2px solid #CD87FC;
+  }
 
   &::-webkit-input-placeholder{
-    color: #fff;
+    color: #808080;
+  }
+
+  &:-webkit-autofill{
+    box-shadow: 0 0 0px 999px #fff inset;
   }
 
   @media screen and (max-width: 1100px){
-    border-radius: 0px 10px 10px 0px;
+    border: none;
+    border-bottom: 1px solid #808080;
     width: 220px;
     font-size: 1.4rem;
   }
