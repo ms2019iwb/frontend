@@ -228,7 +228,7 @@ const Title = styled.div`
   margin-bottom: 10px;
   text-align: center;
   font-size: 2.6rem;
-  color: #A552DD;
+  color: #FF000F;
 `
 
 const Address = styled.div`

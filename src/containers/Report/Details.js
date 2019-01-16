@@ -91,6 +91,7 @@ class Details extends Component {
             </StatusItem>
           </StatusList>
           <Buttonwrap>
+            <EditLink to={`/report/${this.props.computedMatch.params.id}/edit`}>
             <Editing>
               <Button
                 width='89px'
@@ -104,6 +105,7 @@ class Details extends Component {
                 text='編集'
               />
             </Editing>
+            </EditLink>
             <FireFightingLink to={`/fire_fighting/${this.props.computedMatch.params.id}`}>
               <Button
                 width='121px'
@@ -111,8 +113,8 @@ class Details extends Component {
                 border='none'
                 borderradius='10px 10px 10px 10px'
                 boxshadow='none'
-                backgroundcolor='#F2F77C'
-                color='#2D0505'
+                backgroundcolor='#FF000F'
+                color='#FFFFFF'
                 fontsize='1.4rem'
                 text='リモート救助'
               />
@@ -126,11 +128,11 @@ class Details extends Component {
               <Button
                 width='75px'
                 height='30px'
-                border='none'
+                border='1px solid #254FAE'
                 borderradius='5px 5px 5px 5px'
-                boxshadow='0px 0px 4px #391B4D'
-                backgroundcolor='#391B4D'
-                color='#FFFFFF'
+                boxshadow='none'
+                backgroundcolor='#FFFFFF'
+                color='#254FAE'
                 fontsize='1.4rem'
                 text='送信'
               />
@@ -255,10 +257,12 @@ const Editing = styled.div`
   margin-right: 30px;
 `
 
+const EditLink = styled(Link)``
+
 const FireFightingLink = styled(Link)``
 
 const Chat = styled.div`
-  background-color: rgba(191,154,154,0.2);
+  background-color: rgba(37, 79, 174, 0.2);
   
   @media screen and (max-width: 1000px) {
     background-color: #FFFFFF;
@@ -289,11 +293,11 @@ const Textarea = styled.textarea`
   height: 100px;
   margin-bottom: 19px;
   padding: 4px 6px;
-  border: 1px solid #391B4D;
+  border: 1px solid #254FAE;
   border-radius: 10px;
 
   &::-webkit-input-placeholder{
-    color: #391B4D;
+    color: rgba(37, 79, 174, 0.7);
     font-size: 1.4rem;
   }
   

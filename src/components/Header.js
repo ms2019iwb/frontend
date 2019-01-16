@@ -99,6 +99,7 @@ class Header extends Component {
 export default withRouter(Header);
 
 const Root = styled.nav`
+  border-bottom: 1px solid #ffffff;
   background-color: #391B4D;
   width: 100%;
   height: 80px;
