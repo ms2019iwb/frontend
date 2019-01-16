@@ -10,6 +10,7 @@ import ReportDetails from './containers/Report/Details';
 import ReportEdit from './containers/Report/Edit';
 import Edit from './containers/Mypage/Edit';
 import Report from './containers/Report/Report';
+import FireFighting from './containers/FireFighting/FireFighting';
 import ScrollToTop from './components/ScrollToTop';
 // 初期化用スタイルシート
 import './App.css';
@@ -30,6 +31,7 @@ const App = () => (
       <PrivateRoute exact path="/report/:id/form" component={ReportForm} />
       <PrivateRoute exact path="/report/:id" component={ReportDetails} />
       <PrivateRoute exact path="/report/edit" component={ReportEdit} />
+      <PrivateRoute exact path="/fire_fighting/:id" component={FireFighting} />
     </Switch>
     </ScrollToTop>
   </BrowserRouter>

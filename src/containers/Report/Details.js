@@ -6,6 +6,7 @@ import Icon from '../../components/Form/Icon';
 import Commentframe from '../../components/Form/Commentframe';
 import Header from '../../components/Header';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFire, faPen, faUser } from '@fortawesome/free-solid-svg-icons';
 // 環境変数
@@ -103,7 +104,7 @@ class Details extends Component {
                 text='編集'
               />
             </Editing>
-            <Remort>
+            <FireFightingLink to={`/fire_fighting/${this.props.computedMatch.params.id}`}>
               <Button
                 width='121px'
                 height='30px'
@@ -115,7 +116,7 @@ class Details extends Component {
                 fontsize='1.4rem'
                 text='リモート救助'
               />
-            </Remort>
+            </FireFightingLink>
           </Buttonwrap>
         </DetailHeader>
         <Chat>
@@ -254,8 +255,7 @@ const Editing = styled.div`
   margin-right: 30px;
 `
 
-const Remort = styled.div`
-`
+const FireFightingLink = styled(Link)``
 
 const Chat = styled.div`
   background-color: rgba(191,154,154,0.2);
