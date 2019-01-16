@@ -6,6 +6,8 @@ import InputWithIcon from '../../components/Form/InputWithIcon';
 import SubmitButton from '../../components/Button/SubmitButton';
 import axios from 'axios';
 import { withRouter } from 'react-router';
+import Variable from '../../variables/Variable';
+import logo from '../../images/logo.png';
 
 class Login extends Component {
   constructor(props) {
@@ -20,7 +22,7 @@ class Login extends Component {
     };
 
     // ログイン中はリダイレクト
-    if(sessionStorage.getItem("loginUser")) this.props.history.push('/');
+    if(sessionStorage.getItem('loginUser')) this.props.history.push('/');
   }
 
   handleChange = event => {
@@ -47,7 +49,7 @@ class Login extends Component {
     });
 
     axios
-      .post('https://frego-api.herokuapp.com/login', { user })
+      .post(`${Variable.FREGO_API_BASE_ENDPOINT}/login`, { user })
       .then(response => {
         if(response.data) {
           console.log('【frego-api】HTTPリクエスト正常終了: ', response.data);
@@ -72,7 +74,7 @@ class Login extends Component {
       <Root>
         <Top />
         <Form onSubmit={this.SubmitHandler}>
-          <Img src="../images/logo.png" alt="logo" />
+          <Img src={logo} alt="logo" />
           <Nav>
             <TabList />
           </Nav>

@@ -4,74 +4,120 @@ import Status from '../../components/Form/Status';
 import Button from '../../components/Form/Button';
 import Icon from '../../components/Form/Icon';
 import Commentframe from '../../components/Form/Commentframe';
+import Header from '../../components/Header';
+import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFire, faPen, faUser } from '@fortawesome/free-solid-svg-icons';
+// 環境変数
+import Variable from '../../variables/Variable';
 
 class Details extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      title: '',
+      report_status: '',
+      ambulance_status: '',
+      fire_fighting_status: '',
+      address: '',
+      lat: '',
+      lng: '',
+      post_user_id: '',
+      created_at: '',
+      updated_at: ''
+    };
+  }
+
+  componentDidMount() {
+    console.log(`【frego-api】HTTPリクエスト開始: GET /posts/${this.props.computedMatch.params.id}`);
+
+    // 火災レポート1件取得
+    axios
+      .get(`${Variable.FREGO_API_BASE_ENDPOINT}/posts/${this.props.computedMatch.params.id}`)
+      .then(response => {
+        if(response.data) {
+          console.log('【frego-api】HTTPリクエスト正常終了: ', response.data);
+          this.setState({
+            title: response.data.title,
+            report_status: response.data.report_status,
+            ambulance_status: response.data.ambulance_status,
+            fire_fighting_status: response.data.fire_fighting_status,
+            address: response.data.address,
+            lat: response.data.lat,
+            lng: response.data.lng,
+            post_user_id: response.data.post_user_id,
+            created_at: response.data.created_at,
+            updated_at: response.data.updated_at
+          });
+        }
+      })
+      .catch(error => {
+        console.log('【frego-api】HTTPリクエスト異常終了: ', error);
+      });
+  }
+
   render() {
     return(
-      <Report>
-        <Header>Header</Header>
-        <Detailstop>
-          <Nametimewrap>
-            <Nametime>
-              <Name>名前が入ります。</Name>
-              <Time>発生日時：2018年10月26日 12:00</Time>
-            </Nametime>
-            <Updatetime><FontAwesomeIcon icon={faPen} />2018年10月26日 13:00</Updatetime>
-          </Nametimewrap>
-          <Placestatus>
-            <Place><FontAwesomeIcon icon={faFire} />発生場所：○○○県○○○市○○○</Place>
-            <Statuswrap>
-              <Statustop>
-                <Statusname>通報</Statusname>
-                <Status backgroundcolor='#BFAFAF' borderradius='10px 0px 0px 10px' color='#FFFFFF' text='未通報' />
-                <Status backgroundcolor='#FFFFFF' borderradius='0px 0px 0px 0px' color='#BFAFAF' text='通報済み' />
-                <Status backgroundcolor='#FFFFFF' borderradius='0px 10px 10px 0px' color='#BFAFAF' text='不明' />
-              </Statustop>
-              <Statusmiddle>
-                <Statusname>救急車</Statusname>
-                <Status backgroundcolor='#FFFFFF' borderradius='10px 0px 0px 10px' color='#BFAFAF' text='未到着' />
-                <Status backgroundcolor='#BFAFAF' borderradius='0px 0px 0px 0px' color='#FFFFFF' text='到着済み' />
-                <Status backgroundcolor='#FFFFFF' borderradius='0px 10px 10px 0px' color='#BFAFAF' text='不要' />
-              </Statusmiddle>
-              <Statusbottom>
-                <Statusname>消火</Statusname>
-                <Status backgroundcolor='#FFFFFF' borderradius='10px 0px 0px 10px' color='#BFAFAF' text='未消化' />
-                <Status backgroundcolor='#BFAFAF' borderradius='0px 0px 0px 0px' color='#FFFFFF' text='消火済み' />
-                <Status backgroundcolor='#FFFFFF' borderradius='0px 10px 10px 0px' color='#BFAFAF' text='不明' />
-              </Statusbottom>
-            </Statuswrap>
-            <Buttonwrap>
-              <Editing>
-                <Button
-                  width='89px'
-                  height='30px'
-                  border='1px solid #FFFFFF'
-                  borderradius='10px 10px 10px 10px'
-                  boxshadow='none'
-                  backgroundcolor='rgba(255,255,255,0)'
-                  color='#FFFFFF'
-                  fontsize='1.4rem'
-                  text='編集'
-                />
-              </Editing>
-              <Remort>
-                <Button
-                  width='121px'
-                  height='30px'
-                  border='none'
-                  borderradius='10px 10px 10px 10px'
-                  boxshadow='none'
-                  backgroundcolor='#F2F77C'
-                  color='#2D0505'
-                  fontsize='1.4rem'
-                  text='リモート救助'
-                />
-              </Remort>
-            </Buttonwrap>
-          </Placestatus>
-        </Detailstop>
+      <Root>
+        <Header />
+        <DetailHeader>
+          <Title>{this.state.title}</Title>
+          <DateTimeList>
+            <CreatedAt>発生日時：{this.state.created_at}</CreatedAt>
+            <UpdatedAt><UpdateAtIcon icon={faPen} />{this.state.updated_at}</UpdatedAt>
+          </DateTimeList>
+          <Etc><EtcIcon icon={faFire} />発生場所：{this.state.address !== '' ? this.state.address : '位置情報無し' }</Etc>
+          <Etc><EtcIcon icon={faUser} />投稿者：{this.state.post_user_id}さん</Etc>
+          <StatusList>
+            <StatusItem>
+              <StatusName>通報</StatusName>
+              <Status backgroundColor={this.state.report_status === '1' ? '#bfafaf' : '#fff'} borderRadius='10px 0 0 10px' color={this.state.report_status === '1' ? '#fff' : '#bfafaf'} text='未通報' />
+              <Status backgroundColor={this.state.report_status === '2' ? '#bfafaf' : '#fff'} borderRadius='0' color={this.state.report_status === '2' ? '#fff' : '#bfafaf'} text='通報済み' />
+              <Status backgroundColor={this.state.report_status === '3' ? '#bfafaf' : '#fff'} borderRadius='0 10px 10px 0' color={this.state.report_status === '3' ? '#fff' : '#bfafaf'} text='不明' />
+            </StatusItem>
+            <StatusItem>
+              <StatusName>救急車</StatusName>
+              <Status backgroundColor={this.state.ambulance_status === '1' ? '#bfafaf' : '#fff'} borderRadius='10px 0 0 10px' color={this.state.ambulance_status === '1' ? '#fff' : '#bfafaf'} text='未到着' />
+              <Status backgroundColor={this.state.ambulance_status === '2' ? '#bfafaf' : '#fff'} borderRadius='0' color={this.state.ambulance_status === '2' ? '#fff' : '#bfafaf'} text='到着済み' />
+              <Status backgroundColor={this.state.ambulance_status === '3' ? '#bfafaf' : '#fff'} borderRadius='0' color={this.state.ambulance_status === '3' ? '#fff' : '#bfafaf'} text='不要' />
+              <Status backgroundColor={this.state.ambulance_status === '4' ? '#bfafaf' : '#fff'} borderRadius='0 10px 10px 0' color={this.state.ambulance_status === '4' ? '#fff' : '#bfafaf'} text='不明' />
+            </StatusItem>
+            <StatusItem>
+              <StatusName>消火</StatusName>
+              <Status backgroundColor={this.state.fire_fighting_status === '1' ? '#bfafaf' : '#fff'} borderRadius='10px 0 0 10px' color={this.state.fire_fighting_status === '1' ? '#fff' : '#bfafaf'} text='未消火' />
+              <Status backgroundColor={this.state.fire_fighting_status === '2' ? '#bfafaf' : '#fff'} borderRadius='0' color={this.state.fire_fighting_status === '2' ? '#fff' : '#bfafaf'} text='消火済み' />
+              <Status backgroundColor={this.state.fire_fighting_status === '3' ? '#bfafaf' : '#fff'} borderRadius='0 10px 10px 0' color={this.state.fire_fighting_status === '3' ? '#fff' : '#bfafaf'} text='不明' />
+            </StatusItem>
+          </StatusList>
+          <Buttonwrap>
+            <Editing>
+              <Button
+                width='89px'
+                height='30px'
+                border='1px solid #FFFFFF'
+                borderradius='10px 10px 10px 10px'
+                boxshadow='none'
+                backgroundcolor='rgba(255,255,255,0)'
+                color='#FFFFFF'
+                fontsize='1.4rem'
+                text='編集'
+              />
+            </Editing>
+            <Remort>
+              <Button
+                width='121px'
+                height='30px'
+                border='none'
+                borderradius='10px 10px 10px 10px'
+                boxshadow='none'
+                backgroundcolor='#F2F77C'
+                color='#2D0505'
+                fontsize='1.4rem'
+                text='リモート救助'
+              />
+            </Remort>
+          </Buttonwrap>
+        </DetailHeader>
         <Chat>
           <Chatwrap>
             <Chattext>
@@ -116,113 +162,52 @@ class Details extends Component {
             </Chatcommentwrap>
           </Chatwrap>
         </Chat>
-      </Report>
+      </Root>
     );
   }
 }
 
 export default Details;
 
-const Report = styled.div`
-`
+const Root = styled.div``
 
-const Header = styled.header`
+const DetailHeader = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 80px;
-  border-bottom: 1px solid #707070;
-  background-color: #FFFFFF;
-  color: #060606;
-  font-size: 3rem;
-`
-
-const Detailstop = styled.div`
-  width: 100%;
-  border-bottom: 2px solid #254FAE;
+  border-bottom: solid 2px #254FAE;
   background-color: #F58989;
-  text-align: center;
-  color: #FFFFFF;
+  padding: 20px 0;
+  width: 100%;
+  color: #fff;
 `
 
-const Nametimewrap = styled.div`
+const Title = styled.p`
+  margin-bottom: 24px;
+  font-size: 2.6rem;
+  font-weight: bold;
+`
+
+const DateTimeList = styled.ul`
   display: flex;
-  justify-content: space-between;
   margin-bottom: 20px;
-  padding-top: 22px;
-  
-  @media screen and (max-width: 1000px) {
-    flex-direction: column;
-    text-align: right;
-  }
 `
 
-const Nametime = styled.div`
-  margin-left: 200px;
-  text-align: left;
-  
-  @media screen and (max-width: 1000px) {
-    order: 2;
-    margin-left: 15px;
-  }
-`
-
-const Name = styled.div`
-  font-size: 2.4rem;
-  
-  @media screen and (max-width: 1000px) {
-    font-size: 1.6rem;
-  }
-`
-
-const Time = styled.div`
+const CreatedAt = styled.li`
+  margin-right: 950px;
   font-size: 2rem;
-  
-  @media screen and (max-width: 1000px) {
-    font-size: 1.4rem;
-  }
 `
 
-const Updatetime = styled.div`
-  margin-right: 200px;
+const UpdatedAt = styled.li`
   font-size: 2.4rem;
-
-  & > SVG {
-    width: 17px !important;
-    height: auto !important;
-    vertical-align: baseline;
-    margin-right: 10px;
-  }
-  
-  @media screen and (max-width: 1000px) {
-    order: 1;
-    margin-right: 15px;
-    margin-bottom: 9px;
-    font-size: 1.2rem;
-
-    & > svg {
-      width: 12px !important;
-      height: auto !important;
-      margin-right: 1px;
-    }
-  }
 `
 
-const Placestatus = styled.div`
+const UpdateAtIcon = styled(FontAwesomeIcon)`
+  margin-right: 10px;
 `
 
-const Place = styled.div`
-  margin-bottom: 23px;
-  font-size: 3rem;
-
-  & > SVG{
-    width: 20px !important;
-    height: auto !important;
-    vertical-align: baseline;
-    margin-right: 5px;
-  }
+const Etc = styled.p`
+  font-size: 2.4rem;
   
   @media screen and (max-width: 1000px) {
     font-size: 2rem;
@@ -235,28 +220,24 @@ const Place = styled.div`
   }
 `
 
-const Statuswrap = styled.div`
-  margin-bottom: 36px;
+const EtcIcon = styled(FontAwesomeIcon)`
+  margin-right: 5px;
+  vertical-align: baseline;
 `
 
-const Statustop = styled.div`
+const StatusList = styled.ul`
+  margin: 20px 0 36px;
+`
+
+const StatusItem = styled.li`
   display: flex;
-  justify-content: center;
-  margin-bottom: 19px;
+
+  &:not(:last-child) {
+    margin-bottom: 19px;
+  }
 `
 
-const Statusmiddle = styled.div`
-  display: flex;
-  justify-content: center;
-  margin-bottom: 19px;
-`
-
-const Statusbottom = styled.div`
-  display: flex;
-  justify-content: center;
-`
-
-const Statusname = styled.p`
+const StatusName = styled.p`
   width: 60px;
   margin-right: 19px;
   font-size: 2rem;
