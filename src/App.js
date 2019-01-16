@@ -30,7 +30,7 @@ const App = () => (
       <PrivateRoute exact path="/report/check" component={ReportCheck} />
       <PrivateRoute exact path="/report/:id/form" component={ReportForm} />
       <PrivateRoute exact path="/report/:id" component={ReportDetails} />
-      <PrivateRoute exact path="/report/edit" component={ReportEdit} />
+      <PrivateRoute exact path="/report/:id/edit" component={ReportEdit} />
       <PrivateRoute exact path="/fire_fighting/:id" component={FireFighting} />
     </Switch>
     </ScrollToTop>

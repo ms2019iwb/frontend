@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import Header from '../../components/Header';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import Input from '../../components/Form/Input';
@@ -26,231 +27,118 @@ class Form extends Component {
   
   render() {
     return(
-      <Report>
-        <Header>Header</Header>
-        <Midlecenter>
-          <Title><FontAwesomeIcon icon={faEdit} />レポート編集</Title>
-          <Reportedit>
-            <Subtitle>編集が必要な場所を変更してください</Subtitle>
-            <Subtitle2>編集</Subtitle2>
-            <Occurrencewrap>
-              <Occurrencetop>
-                <Occurrenceitem>発生場所</Occurrenceitem>
-                <Text
-                  type='text'
-                  name='place'
-                  id='place'
-                  width='236px'
-                  height='35px'
-                  padding='8px 9px'
-                  border='1px solid #254FAE'
-                  borderradius='10px 10px 10px 10px'
-                  boxshadow='0px 3px 2px rgba(0,0,0,0.16)'
-                  color='#828A9D'
-                  fontsize='1.4rem'
-                  textalign='left'
-                  value={this.state.data.place}
-                  placeholder='県庁所在地が入ります'
-                  onChange={this.handleChange}
-                />
-              </Occurrencetop>
-              <Occurrenceunder>
-                <Occurrenceitem>発生日時</Occurrenceitem>
-                <Text
-                  type='datetime-local'
-                  name='date'
-                  id='date'
-                  width='236px'
-                  height='35px'
-                  padding='7px 9px'
-                  border='1px solid #254FAE'
-                  borderradius='10px 10px 10px 10px'
-                  boxshadow='0px 3px 2px rgba(0,0,0,0.16)'
-                  color='#828A9D'
-                  fontsize='1.6rem'
-                  textalign='center'
-                  value={this.state.data.date}
-                  placeholder=''
-                  onChange={this.handleChange}
-                />
-              </Occurrenceunder>
-            </Occurrencewrap>
-            <Radiowrap>
-              <Radiotop>
-                <Radiotext>通報</Radiotext>
-                <Input text='未通報' borderradius='10px 0px 0px 10px' name='tr' value='0' id='mitu' />
-                <Input text='通報済み' borderradius='0px 0px 0px 0px' name='tr' value='1' id='tuhozumi' />
-                <Input text='不明' borderradius='0px 10px 10px 0px' name='tr' value='2' id='humei' />
-              </Radiotop>
-              <Radiounder>
-                <Radiotext>救急車</Radiotext>
-                <Input text='未到着' borderradius='10px 0px 0px 10px' name='tk' value='0' id='mito' />
-                <Input text='到着済み' borderradius='0px 0px 0px 0px' name='tk' value='1' id='tozumi' />
-                <Input text='不要' borderradius='0px 10px 10px 0px' name='tk' value='2' id='huyo' />
-              </Radiounder>
-            </Radiowrap>
-            <Reportsubmit>
-              <Submit type='submit' value='変更'></Submit>
-            </Reportsubmit>
-          </Reportedit>
-        </Midlecenter>
-      </Report>
+      <Root>
+        <Header />
+        <Mark>マーク</Mark>
+        <Message>{this.state.address === '' ? '火災は位置情報無しで報告されました！' : '火災は位置情報と共に報告されました！'}</Message>
+        <ReportForm onSubmit={this.submitHandler}>
+          <Title>{this.state.title}</Title>
+          <Joukyo>詳しい状況をレポートしてください</Joukyo>
+          <Radiowrap>
+            <Radiotop>
+              <Radiotext>通報</Radiotext>
+              <Input text='未通報' borderRadius='10px 0 0 10px' name='report_status' value='1' id='mitu' onClick={() => this.setState({report_status: '1'})} />
+              <Input text='通報済み' bordeRradius='0' name='report_status' value='2' id='tuhozumi' onClick={() => this.setState({report_status: '2'})} />
+              <Input text='不明' borderRadius='0 10px 10px 0' name='report_status' value='3' id='humei' onClick={() => this.setState({report_status: '3'})} />
+            </Radiotop>
+            <Radiounder>
+              <Radiotext>救急車</Radiotext>
+              <Input text='未到着' borderRadius='10px 0 0 10px' name='ambulance_status' value='1' id='mito' onClick={() => this.setState({ambulance_status: '1'})} />
+              <Input text='到着済み' borderRradius='0' name='ambulance_status' value='2' id='tozumi' onClick={() => this.setState({ambulance_status: '2'})} />
+              <Input text='不要' borderRadius='0' name='ambulance_status' value='3' id='huyo' onClick={() => this.setState({ambulance_status: '3'})} />
+              <Input text='不明' borderRadius='0 10px 10px 0' name='ambulance_status' value='4' id='unkown' onClick={() => this.setState({ambulance_status: '4'})} />
+            </Radiounder>
+          </Radiowrap>
+          <Reporttext>
+            <Textarea name="comment" placeholder="詳細な情報を教えてください" onChange={this.formUpdate}>{this.state.comment}</Textarea>
+          </Reporttext>
+          <Reportfile>
+            <Fileup>
+              アップロードする
+              <File type='file'></File>
+            </Fileup>
+          </Reportfile>
+          <Reportfileimg>
+            <Img>画像</Img>
+            <Filename>ファイル名.....</Filename>
+          </Reportfileimg>
+          <Reportsubmit>
+            <Submit type='submit' value='登録' />
+          </Reportsubmit>
+        </ReportForm>
+      </Root>
     );
   }
 }
 
 export default Form;
 
-const Report = styled.div`
-  position: relative;
+const Root = styled.div`
   width: 100%;
   height: 100%;
-  background-color: #F58989;
+  background-color: #391B4D;
   text-align: center;
   color: #FFFFFF;
-  @media screen and (max-width: 900px) {
+
+  @media screen and (max-width: 800px) {
     background-color: #FFFFFF;
     color: #254FAE;
   }
 `
 
-const Header = styled.header`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  position: fixed;
-  top: 0;
-  z-index: 1;
-  width: 100%;
-  height: 80px;
-  border-bottom: 1px solid #707070;
-  background-color: #FFFFFF;
-  color: #060606;
-  font-size: 3rem;
-  @media screen and (max-width: 900px) {
-    position: unset;
-    top: unset;
-    z-index: unset;
-    height: 60px;
-    margin-bottom: 41px;
+const Mark = styled.div`
+  margin: 78px 0 20px;
+
+  @media screen and (max-width: 800px) {
+    margin: 31px 0 8px;
   }
 `
 
-const Midlecenter = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100vh;
-
-  @media screen and (max-width: 900px) {
-    display: unset;
-    flex-direction: unset;
-    align-items: unset;
-    justify-content: unset;
-    width: unset;
-    height: unset;
-  }
-`
-
-const Title = styled.p`
+const Message = styled.p`
   margin-bottom: 30px;
-  font-size: 2.6rem;
-  font-weight: bold;
+  font-size: 2rem;
 
-  & > svg{
-    width: 26px;
-    height: auto;
-    margin-right: 5px;
-  }
-
-  @media screen and (max-width: 900px) {
-    margin-bottom: 43px;
-    font-size: 2rem;
-
-    & > svg{
-      width: 22px;
-      height: auto;
-    }
+  @media screen and (max-width: 800px) {
+    margin-bottom: 29px;
   }
 `
 
-const Reportedit = styled.form`
+const ReportForm = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 800px;
-  height: 500px;
+  height: 700px;
   margin: 0 auto;
-  padding-top: 52px;
+  margin-bottom: 77px;
+  padding-top: 36px;
   border: 1px solid #707070;
   border-radius: 40px;
-  box-shadow: 0px 3px 10px rgba(0,0,0,0.3);
   background-color: #FFFFFF;
-  color: #254FAE;
-  @media screen and (max-width: 900px) {
-    width: auto;
+  color: #FF000F;
+
+  @media screen and (max-width: 800px) {
     height: auto;
     margin-bottom: 0px;
     padding-top: 0px;
-    padding-bottom: 74px;
+    padding-bottom: 39px;
     border: none;
     border-radius: none;
-    box-shadow: none;
   }
 `
 
-const Subtitle = styled.p`
-  margin-bottom: 51px;
-  font-size: 2rem;
-
-  @media screen and (max-width: 900px) {
-    display: none;
-  }
+const Title = styled.p`
+  margin-bottom: 17px;
+  font-size: 2.4rem;
 `
 
-const Subtitle2 = styled.p`
-  display: none;
-
-  @media screen and (max-width: 900px) {
-    display: block;
-    margin-bottom: 41px;
-    font-size: 1.8rem;
-  }
-`
-
-const Occurrencewrap = styled.div`
-  margin-bottom: 21px;
-`
-
-const Occurrencetop = styled.div`
-  display: flex;
-  margin-bottom: 21px;
-`
-
-const Occurrenceunder = styled.div`
-  display: flex;
-`
-
-const Occurrenceitem = styled.p`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 64px;
-  margin-right: 20px;
-  font-size: 1.6rem;
-  text-align: center;
+const Joukyo = styled.p`
+  margin-bottom: 16px;
+  font-size: 1.8rem;
 `
 
 const Radiowrap = styled.div`
-  margin-bottom: 43px;
-
-  @media screen and (max-width: 900px) {
-    margin-bottom: 76px;
-  }
+  margin-bottom: 39px;
 `
 
 const Radiotop = styled.div`
@@ -263,14 +151,67 @@ const Radiounder = styled.div`
 `
 
 const Radiotext = styled.p`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   width: 48px;
   margin-right: 20px;
   font-size: 1.6rem;
   text-align: center;
+`
+
+const Reporttext = styled.div`
+  margin-bottom: 40px;
+  font-size: 1.2rem;
+`
+
+const Textarea = styled.textarea`
+  width: 308px;
+  height: 100px;
+  padding: 4px 6px;
+  border: 1px solid #FF000F;
+  border-radius: 10px;
+
+  &::-webkit-input-placeholder{
+    color: #A2A2A2;
+    font-size: 1.2rem;
+  }
+`
+
+const Reportfile = styled.div`
+  margin-bottom: 15px;
+`
+
+const Fileup = styled.label`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 118px;
+  height: 30px;
+  border: 1px solid #FF000F;
+  border-radius: 15px;
+  text-align: center;
+  font-size: 1.2rem;
+`
+
+const File = styled.input`
+  display: none;
+`
+
+const Reportfileimg = styled.div`
+`
+
+const Img = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 118px;
+  height: 118px;
+  border: 1px solid #FF000F;
+  font-size: 2rem;
+`
+
+const Filename = styled.p`
+  margin-bottom: 41px;
+  text-align: left;
 `
 
 const Reportsubmit = styled.div`
@@ -285,7 +226,7 @@ const Submit = styled.input`
   height: 50px;
   border: none;
   border-radius: 5px;
-  background-color: #254FAE;
+  background-color: #FF000F;
   color: #FFFFFF;
   font-size: 2rem;
 `

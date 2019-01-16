@@ -25,10 +25,10 @@ const Root = styled.div`
   width: 400px;
   height: 99px;
   padding: 7px 10px;
-  border: 1px solid #391B4D;
+  border: 1px solid #254FAE;
   border-radius: 10px;
   background-color: #FFFFFF;
-  color: #391B4D;
+  color: #254FAE;
   font-size: 1.4rem;
 
   &::before{

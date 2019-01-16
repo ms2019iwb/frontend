@@ -29,7 +29,7 @@ const Radioinput = styled.input`
   display: none;
 
   &:checked + label{
-    background-color: #254FAE;
+    background-color: #FF000F;
     color: #FFFFFF;
   }
 `
@@ -45,9 +45,9 @@ const Label = styled.label`
   -ms-box-sizing: border-box;
   width: 80px;
   height: 35px;
-  border: 1px solid #254FAE;
+  border: 1px solid #FF000F;
   border-radius: ${props => props.borderRadius};
   box-shadow: 0px 3px 2px rgba(0,0,0,0.16);
-  color: #254FAE;
+  color: #FF000F;
   font-size: 1.4rem;
 `
