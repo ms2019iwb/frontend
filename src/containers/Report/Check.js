@@ -94,7 +94,7 @@ class ReportCheck extends Component {
     console.log('【frego-api】HTTPリクエスト開始: POST /posts');
 
     axios
-      .post(`${Variable.FREGO_API_BASE_ENDPOINT}/posts`, { post: data })
+      .post(`${process.env.REACT_APP_FREGO_API_BASE_ENDPOINT}/posts`, { post: data })
       .then(response => {
         if(response.data) {
           console.log('【frego-api】HTTPリクエスト正常終了: ', response.data);

@@ -107,7 +107,7 @@ class FireFighting extends Component {
     console.log(`【frego-api】HTTPリクエスト開始: GET /posts/${this.props.computedMatch.params.id}`);
 
     axios
-      .get(`${Variable.FREGO_API_BASE_ENDPOINT}/posts/${this.props.computedMatch.params.id}`)
+      .get(`${process.env.REACT_APP_FREGO_API_BASE_ENDPOINT}/posts/${this.props.computedMatch.params.id}`)
       .then(response => {
         if(response.data) {
           console.log('【frego-api】HTTPリクエスト正常終了: ', response.data);
@@ -146,7 +146,7 @@ class FireFighting extends Component {
     console.log(`【frego-api】HTTPリクエスト開始: PATCH /posts/${this.props.computedMatch.params.id}`);
 
     axios
-      .patch(`${Variable.FREGO_API_BASE_ENDPOINT}/posts/${this.props.computedMatch.params.id}`, { post: data })
+      .patch(`${process.env.REACT_APP_FREGO_API_BASE_ENDPOINT}/posts/${this.props.computedMatch.params.id}`, { post: data })
       .then(response => {
         if(response.data) {
           console.log('【frego-api】HTTPリクエスト正常終了: ', response.data);

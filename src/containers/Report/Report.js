@@ -61,7 +61,7 @@ class Report extends Component {
     console.log('【frego-api】HTTPリクエスト開始: GET /posts/');
 
     axios
-      .get(`${Variable.FREGO_API_BASE_ENDPOINT}/posts`, { params })
+      .get(`${process.env.REACT_APP_FREGO_API_BASE_ENDPOINT}/posts`, { params })
       .then(response => {
         if(response.data) {
           console.log('【frego-api】HTTPリクエスト正常終了: ', response.data);
@@ -81,7 +81,7 @@ class Report extends Component {
       console.log('【frego-api】HTTPリクエスト開始: GET /posts/count');
 
       axios
-      .get(`${Variable.FREGO_API_BASE_ENDPOINT}/postscount`)
+      .get(`${process.env.REACT_APP_FREGO_API_BASE_ENDPOINT}/postscount`)
       .then(response => {
         if(response.data) {
           console.log('【frego-api】HTTPリクエスト正常終了: ', response.data);

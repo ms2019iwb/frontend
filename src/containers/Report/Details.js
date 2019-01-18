@@ -34,7 +34,7 @@ class Details extends Component {
 
     // 火災レポート1件取得
     axios
-      .get(`${Variable.FREGO_API_BASE_ENDPOINT}/posts/${this.props.computedMatch.params.id}`)
+      .get(`${process.env.REACT_APP_FREGO_API_BASE_ENDPOINT}/posts/${this.props.computedMatch.params.id}`)
       .then(response => {
         if(response.data) {
           console.log('【frego-api】HTTPリクエスト正常終了: ', response.data);

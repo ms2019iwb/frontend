@@ -50,7 +50,7 @@ class Signup extends Component {
     });
 
     axios
-      .post(`${Variable.FREGO_API_BASE_ENDPOINT}/users`, { user })
+      .post(`${process.env.REACT_APP_FREGO_API_BASE_ENDPOINT}/users`, { user })
       .then(response => {
         if(response.data) {
           console.log('【frego-api】HTTPリクエスト正常終了: ', response.data);

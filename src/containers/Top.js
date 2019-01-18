@@ -38,7 +38,7 @@ class Top extends Component {
       console.log('【frego-api】HTTPリクエスト開始: GET /burncount');
 
       axios
-        .get(`${Variable.FREGO_API_BASE_ENDPOINT}/burncount`)
+        .get(`${process.env.REACT_APP_FREGO_API_BASE_ENDPOINT}/burncount`)
         .then(response => {
           if(response.data) {
             console.log('【frego-api】HTTPリクエスト正常終了: ', response.data);
@@ -61,7 +61,7 @@ class Top extends Component {
       console.log('【frego-api】HTTPリクエスト開始: GET /excount');
 
       axios
-        .get(`${Variable.FREGO_API_BASE_ENDPOINT}/excount`)
+        .get(`${process.env.REACT_APP_FREGO_API_BASE_ENDPOINT}/excount`)
         .then(response => {
           if(response.data) {
             console.log('【frego-api】HTTPリクエスト正常終了: ', response.data);
@@ -84,7 +84,7 @@ class Top extends Component {
       console.log('【frego-api】HTTPリクエスト開始: GET /lastpost');
 
       axios
-        .get(`${Variable.FREGO_API_BASE_ENDPOINT}/lastpost`)
+        .get(`${process.env.REACT_APP_FREGO_API_BASE_ENDPOINT}/lastpost`)
         .then(response => {
           const { data } = response;
           if(data) {
