@@ -225,22 +225,22 @@ const Main = styled.main`
 `
 
 const Title = styled.div`
-  margin-bottom: 10px;
+  margin-bottom: 30px;
   text-align: center;
-  font-size: 2.6rem;
+  font-size: 5.2rem;
   color: #FF000F;
 `
 
 const Address = styled.div`
   margin-bottom: 20px;
   text-align: center;
-  font-size: 22px;
+  font-size: 4.4rem;
   color: #2C2B3F;
 `
 
 const DetailLink = styled(Link)`
-  margin-bottom: 70px;
-  font-size: 1.4rem;
+  margin-bottom: 110px;
+  font-size: 2.8rem;
   color: #A7A7A7;
 `
 
@@ -250,7 +250,7 @@ const Action = styled.div`
 
 const ActionText = styled.div`
   margin-bottom: 25px;
-  font-size: 4rem;
+  font-size: 8rem;
   color: #A7A7A7;
 `
 
@@ -258,13 +258,13 @@ const ActionButton = styled.div`
   background-color: #FF000F;
   border: 1px solid #2C2B3F;
   border-radius: 100%;
-  width: 75px;
-  height: 75px;
+  width: 100px;
+  height: 100px;
   margin: 0 auto;
   margin-bottom: 40px;
-  line-height: 75px;
+  line-height: 100px;
   text-align: center;
-  font-size: 2.2rem;
+  font-size: 4.4rem;
   color: #fff;
   cursor: pointer;
 `
@@ -301,20 +301,20 @@ const Description = styled.div`
 const DescriptionCompletion = styled.div`
   /* display: ${props => props.updateFlag ? 'block' : 'none'}; */
   color: #52B737;
-  font-size: 4rem;
+  font-size: 8rem;
 `
 
 const DescriptionCompletionText = styled.div`
 /* display: ${props => props.updateFlag ? 'block' : 'none'}; */
   margin-bottom: 25px;
   color: #52B737;
-  font-size: 4rem;
-  line-height: 4rem;
+  font-size: 8rem;
+  line-height: 80px;
 `
 
 const DescriptionCompletionIcon = styled.div`
   /* display: ${props => props.updateFlag ? 'block' : 'none'}; */
   color: #52B737;
-  font-size: 4rem;
+  font-size: 8rem;
   text-align: center;
 `

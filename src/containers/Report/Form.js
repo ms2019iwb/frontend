@@ -139,7 +139,7 @@ export default withRouter(Form);
 const Root = styled.div`
   width: 100%;
   height: 100%;
-  background-color: #F58989;
+  background-color: #391B4D;
   text-align: center;
   color: #FFFFFF;
 
@@ -178,7 +178,7 @@ const ReportForm = styled.form`
   border: 1px solid #707070;
   border-radius: 40px;
   background-color: #FFFFFF;
-  color: #254FAE;
+  color: #FF000F;
 
   @media screen and (max-width: 800px) {
     height: auto;
@@ -229,7 +229,7 @@ const Textarea = styled.textarea`
   width: 308px;
   height: 100px;
   padding: 4px 6px;
-  border: 1px solid #254FAE;
+  border: 1px solid #FF000F;
   border-radius: 10px;
 
   &::-webkit-input-placeholder{
@@ -248,7 +248,7 @@ const Fileup = styled.label`
   justify-content: center;
   width: 118px;
   height: 30px;
-  border: 1px solid #254FAE;
+  border: 1px solid #FF000F;
   border-radius: 15px;
   text-align: center;
   font-size: 1.2rem;
@@ -268,7 +268,7 @@ const Img = styled.div`
   justify-content: center;
   width: 118px;
   height: 118px;
-  border: 1px solid #254FAE;
+  border: 1px solid #FF000F;
   font-size: 2rem;
 `
 
@@ -289,7 +289,7 @@ const Submit = styled.input`
   height: 50px;
   border: none;
   border-radius: 5px;
-  background-color: #254FAE;
+  background-color: #FF000F;
   color: #FFFFFF;
   font-size: 2rem;
 `

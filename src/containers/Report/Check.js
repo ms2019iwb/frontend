@@ -240,7 +240,7 @@ const AnswerList = styled.ul`
 `
 
 const AnswerItem = styled.li`
-  background-color: #F58989;
+  background-color: #FF000F;
   border-radius: 100%;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.16);
   width: 100px;
@@ -249,6 +249,10 @@ const AnswerItem = styled.li`
   text-align: center;
   font-size: 2.4rem;
   color: #fff;
+
+  &:last-child {
+    background-color: #3B35F7;
+  }
 
   @media screen and (max-width: 1100px) {
     width: 75px;
