@@ -6,7 +6,6 @@ import InputWithIcon from '../../components/Form/InputWithIcon';
 import SubmitButton from '../../components/Button/SubmitButton';
 import axios from 'axios';
 import { withRouter } from 'react-router';
-import Variable from '../../variables/Variable';
 
 class Signup extends Component {
   constructor(props) {

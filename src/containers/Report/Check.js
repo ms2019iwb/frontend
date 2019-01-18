@@ -8,7 +8,6 @@ import axios from 'axios';
 import { withRouter } from 'react-router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
-import Variable from '../../variables/Variable';
 
 class ReportCheck extends Component {
   constructor(props) {

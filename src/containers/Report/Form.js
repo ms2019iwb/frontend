@@ -4,7 +4,6 @@ import Input from '../../components/Form/Input';
 import Header from '../../components/Header';
 import axios from 'axios';
 import { withRouter } from 'react-router';
-import Variable from '../../variables/Variable';
 
 class Form extends Component {
   constructor(props) {

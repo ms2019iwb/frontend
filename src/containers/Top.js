@@ -5,7 +5,6 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFire, faFireExtinguisher } from '@fortawesome/free-solid-svg-icons';
-import Variable from '../variables/Variable';
 
 class Top extends Component {
   constructor(props) {

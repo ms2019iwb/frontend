@@ -9,8 +9,6 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFire, faPen, faUser } from '@fortawesome/free-solid-svg-icons';
-// 環境変数
-import Variable from '../../variables/Variable';
 
 class Details extends Component {
   constructor(props) {

@@ -7,8 +7,6 @@ import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus, faEdit, faMapMarkerAlt, faFire } from '@fortawesome/free-solid-svg-icons';
-// 環境変数
-import Variable from '../../variables/Variable';
 
 class Report extends Component {
   constructor(props) {

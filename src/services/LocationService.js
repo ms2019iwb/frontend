@@ -1,5 +1,3 @@
-import Variable from '../variables/Variable';
-
 class LocationService {
   getCurrentPosition() {
     return new Promise((resolve, reject) => {
@@ -18,7 +16,7 @@ class LocationService {
       const options = {
         provider: 'google',
         httpAdapter: 'https',
-        apiKey: Variable.GOOGLE_MAP_API_KEY,
+        apiKey: process.env.REACT_APP_GOOGLE_MAP_API_KEY,
         formatter: null
       };
 
