@@ -147,7 +147,7 @@ class Report extends Component {
         <Main>
           <ReportList>
             {this.state.reports.map(item => {
-              let iconColor
+              let iconColor = '';
               switch(item.fire_fighting_status) {
                 // 未消火
                 case '1':
@@ -162,6 +162,11 @@ class Report extends Component {
                   iconColor = '#777';
                   break;
               }
+              // 日付整形
+              const cdt = new Date(item.created_at);
+              const preformattedCreatedAt = `${cdt.getFullYear()}.${('00' + cdt.getMonth()+1).slice(-2)}.${('00' + cdt.getDate()).slice(-2)} ${('00' + cdt.getHours()).slice(-2)}:${('00' + cdt.getMinutes()).slice(-2)}`;
+              const udt = new Date(item.updated_at);
+              const preformattedUpdatedAt = `${udt.getFullYear()}.${('00' + udt.getMonth()+1).slice(-2)}.${('00' + udt.getDate()).slice(-2)} ${('00' + udt.getHours()).slice(-2)}:${('00' + udt.getMinutes()).slice(-2)}`;
               return(
                 <ReportItem key={item.id}>
                   <ReportLink to={`/report/${item.id}`}>
@@ -171,11 +176,11 @@ class Report extends Component {
                         <tbody>
                           <ReportDetailItem>
                             <ReportDetailTitle><ReportDetailIcon icon={faPlus} />新規</ReportDetailTitle>
-                            <ReportDetailContent>{item.created_at}</ReportDetailContent>
+                            <ReportDetailContent>{preformattedCreatedAt}</ReportDetailContent>
                           </ReportDetailItem>
                           <ReportDetailItem>
                             <ReportDetailTitle><ReportDetailIcon icon={faEdit} />更新</ReportDetailTitle>
-                            <ReportDetailContent>{item.updated_at !== item.updated_at ? item.updated_at : '更新無し'}</ReportDetailContent>
+                            <ReportDetailContent>{item.updated_at !== item.created_at ? preformattedUpdatedAt : '更新無し'}</ReportDetailContent>
                           </ReportDetailItem>
                           <ReportDetailItem>
                             <ReportDetailTitle><ReportDetailIcon icon={faMapMarkerAlt} />位置情報</ReportDetailTitle>
@@ -263,7 +268,7 @@ const ReportMain = styled.div`
 const ReportTitle = styled.p`
   font-size: 20px;
   font-weight: bold;
-  color: #A552DD;
+  color: #FF000F;
 `
 
 const ReportDetailList = styled.table`
@@ -279,20 +284,21 @@ const ReportDetailTitle = styled.th`
   min-width: 85px;
   text-align: right;
   font-size: 1.4rem;
-  color: #C5A8A8;
+  color: #2C2B3F;
 `
 
 const ReportDetailIcon = styled(FontAwesomeIcon)`
   margin-right: 2px;
   font-size: 1.4rem;
-  color: #C5A8A8;
+  color: #2C2B3F;
 `
 
 const ReportDetailContent = styled.td`
   padding: 4px 0;
   width: 365px;
+  line-height: 21px;
   font-size: 1.4rem;
-  color: #C5A8A8;
+  color: #2C2B3F;
 `
 
 const StatusIconArea = styled.div`

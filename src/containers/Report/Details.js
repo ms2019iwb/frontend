@@ -38,6 +38,11 @@ class Details extends Component {
       .then(response => {
         if(response.data) {
           console.log('【frego-api】HTTPリクエスト正常終了: ', response.data);
+          // 日付整形
+          const cdt = new Date(response.data.created_at);
+          const preformattedCreatedAt = `${cdt.getFullYear()}年${('00' + cdt.getMonth()+1).slice(-2)}月${('00' + cdt.getDate()).slice(-2)}日 ${('00' + cdt.getHours()).slice(-2)}:${('00' + cdt.getMinutes()).slice(-2)}`;
+          const udt = new Date(response.data.updated_at);
+          const preformattedUpdatedAt = `${udt.getFullYear()}年${('00' + udt.getMonth()+1).slice(-2)}月${('00' + udt.getDate()).slice(-2)}日 ${('00' + udt.getHours()).slice(-2)}:${('00' + udt.getMinutes()).slice(-2)}`;
           this.setState({
             title: response.data.title,
             report_status: response.data.report_status,
@@ -47,8 +52,8 @@ class Details extends Component {
             lat: response.data.lat,
             lng: response.data.lng,
             post_user_id: response.data.post_user_id,
-            created_at: response.data.created_at,
-            updated_at: response.data.updated_at
+            created_at: preformattedCreatedAt,
+            updated_at: preformattedUpdatedAt
           });
         }
       })
@@ -116,7 +121,7 @@ class Details extends Component {
                 backgroundcolor='#FF000F'
                 color='#FFFFFF'
                 fontsize='1.4rem'
-                text='リモート救助'
+                text='消火活動'
               />
             </FireFightingLink>
           </Buttonwrap>

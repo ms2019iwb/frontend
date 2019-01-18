@@ -44,7 +44,7 @@ class FireFighting extends Component {
 
     // Web Speech API
     let ssu = new SpeechSynthesisUtterance();
-    ssu.text = '消火活動開始。息を吹きかけてください。';
+    ssu.text = '消火活動開始。右のボールに息を吹きかけてください。';
     ssu.lang = 'ja-JP';
     speechSynthesis.speak(ssu);
   }

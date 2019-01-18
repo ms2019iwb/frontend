@@ -86,18 +86,19 @@ class Top extends Component {
       axios
         .get(`${Variable.FREGO_API_BASE_ENDPOINT}/lastpost`)
         .then(response => {
-          if(response.data) {
-            console.log('【frego-api】HTTPリクエスト正常終了: ', response.data);
+          const { data } = response;
+          if(data) {
+            console.log('【frego-api】HTTPリクエスト正常終了: ', data);
             // 日付整形
-            const cdt = new Date(response.data.created_at);
+            const cdt = new Date(data.created_at);
             const preformattedCreatedAt = `${cdt.getFullYear()}/${cdt.getMonth()+1}/${cdt.getDate()} ${cdt.getHours()}:${cdt.getMinutes()}`;
-            const udt = new Date(response.data.updated_at);
+            const udt = new Date(data.updated_at);
             const preformattedUpdatedAt = `${udt.getFullYear()}/${udt.getMonth()+1}/${udt.getDate()} ${udt.getHours()}:${udt.getMinutes()}`;
             this.setState({
               latestReport: {
-                id: response.data.id,
-                title: response.data.title,
-                fire_fighting_status: response.data.fire_fighting_status,
+                id: data.id,
+                title: data.title,
+                fire_fighting_status: data.fire_fighting_status,
                 created_at: preformattedCreatedAt,
                 updated_at: preformattedUpdatedAt
               }
