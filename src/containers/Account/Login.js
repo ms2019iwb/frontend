@@ -6,7 +6,6 @@ import InputWithIcon from '../../components/Form/InputWithIcon';
 import SubmitButton from '../../components/Button/SubmitButton';
 import axios from 'axios';
 import { withRouter } from 'react-router';
-import Variable from '../../variables/Variable';
 import logo from '../../images/logo.png';
 
 class Login extends Component {
@@ -49,14 +48,14 @@ class Login extends Component {
     });
 
     axios
-      .post(`${Variable.FREGO_API_BASE_ENDPOINT}/login`, { user })
+      .post(`${process.env.REACT_APP_FREGO_API_BASE_ENDPOINT}/login`, { user })
       .then(response => {
         if(response.data) {
           console.log('【frego-api】HTTPリクエスト正常終了: ', response.data);
           this.setState({
             statusMsg: '認証に成功しました。'
           });
-          sessionStorage.setItem("loginUser", JSON.stringify(response.data));
+          sessionStorage.setItem('loginUser', JSON.stringify(response.data));
           // リダイレクト
           this.props.history.push('/');
         }
