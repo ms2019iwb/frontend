@@ -156,7 +156,7 @@ class Top extends Component {
           </Tocontents>
           <ListLink to="/report">投稿一覧</ListLink>
         </Toppost>
-        <Newupdate>
+        {/* <Newupdate>
           <SectionTitle>最近の更新</SectionTitle>
           <Necontents>
             <Netext>XXX県XXX市XXX町XX-X の火災レポートの概要が更新されました。</Netext>
@@ -166,7 +166,7 @@ class Top extends Component {
             <Netext>XXX県XXX市XXX町XX-X の火災レポートの概要が更新されました。</Netext>
           </Necontents>
           <ListLink to="">更新一覧</ListLink>
-        </Newupdate>
+        </Newupdate> */}
       </Root>
     );
   }
